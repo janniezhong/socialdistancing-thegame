@@ -3,20 +3,20 @@ import java.util.ArrayList;
 
 public class LevelZero {
 	//FIELDS
-	Obstacle ob1;
-	ArrayList<Obstacle> x;
+//	Obstacle ob1;
+//	ArrayList<Obstacle> x;
 	
 	//CONSTRUCTORS
 	
 	public LevelZero (){
 		
-		x = new ArrayList<Obstacle>();
+		//x = new ArrayList<Obstacle>();
 	}
 	
-	public ArrayList<Obstacle> typeOfObstacles(){
-		
-		return x;
-	}
+//	public ArrayList<Obstacle> typeOfObstacles(){
+//
+//		return x;
+//	}
 
 	
 }

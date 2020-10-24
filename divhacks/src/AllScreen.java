@@ -24,23 +24,21 @@ public class AllScreen extends JPanel{
 		resultPanel = new ResultScreen(this);
 		levelPanel = new LevelScreen(this);
 		
-		
-		panel.setLevel(LEVEL);
-		System.out.println(LEVEL + "");
+
 		
 		this.setLayout(cards);
-	    this.add(titlePanel, "Title");
-	    this.add(levelPanel, "Level");
-	    this.add(panel, "Game");
-	    this.add(resultPanel, "Results");
+//	    this.add(titlePanel, "Title");
+//	    this.add(levelPanel, "Level");
+//	    this.add(panel, "Game");
+//	    this.add(resultPanel, "Results");
 	    
 //	     cards.show(this, "Title");
 
-		panel.addMouseListener(panel);
-		panel.addMouseMotionListener(panel);
-		titlePanel.addMouseListener(titlePanel);
-		resultPanel.addMouseListener(resultPanel);
-		levelPanel.addMouseListener(levelPanel);
+//		panel.addMouseListener(panel);
+//		panel.addMouseMotionListener(panel);
+//		titlePanel.addMouseListener(titlePanel);
+//		resultPanel.addMouseListener(resultPanel);
+//		levelPanel.addMouseListener(levelPanel);
 	
 		
 	}

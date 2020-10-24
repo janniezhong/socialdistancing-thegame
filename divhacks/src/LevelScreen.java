@@ -79,7 +79,7 @@ public class LevelScreen extends Screen {
 			isSelected = true;
 		}
 
-		as.panel.setLevel(AllScreen.LEVEL);
+		//as.panel.setLevel(AllScreen.LEVEL);
 		
 		if (isSelected){
 			as.changeScreen("Game");

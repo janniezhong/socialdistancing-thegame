@@ -16,15 +16,13 @@ public class Character {
 	private static boolean hasHitBottom, hasHitTop;
 	private boolean hasDied;
 	private boolean hasHitTarget;
-	private Slingshot ss;
-	private HelperObject currObj;
 	private int indexOfCurrObj;
 
 	private AllScreen as;
 	private double xVel, yVel;
 
 	// CONSTRUCTORS
-	public Character(int xCoor, int yCoor, int w, int h, Image character, Slingshot ss, AllScreen as) {
+	public Character(int xCoor, int yCoor, int w, int h, Image character, AllScreen as) {
 		x = xCoor;
 		y = yCoor;
 		// xChange = 0;
@@ -33,13 +31,11 @@ public class Character {
 		yVel = 0;
 		charImg = character;
 		beginTime = 0;
-		this.ss = ss;
 		hasHitBottom = false;
 		hasHitTop = false;
 		hasDied = false;
 		charWidth = w;
 		charHeight = h;
-		currObj = new HelperObject(0, 0, 60, 10);
 		indexOfCurrObj = -1;
 		this.as = as;
 	}
@@ -87,7 +83,6 @@ public class Character {
 		x += xVel;
 		y += yVel;
 
-		yVel += Slingshot.GRAVITY;
 
 		hasHitTop = false;
 		hasHitBottom = false;
@@ -101,75 +96,75 @@ public class Character {
 
 	}
 
-	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, Target t,
-			int screenWidth, int screenHeight) {
-
-		if (x <= -charWidth / 2.0 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
-			hasDied = true;
-		}
-
-		for (int i = 0; i < obstacles.size(); i++) {
-
-			Polygon obstacle = obstacles.get(i).getPolygon();
-
-			// obstacle.addPoint(obstacles.get(i).getX1(),
-			// obstacles.get(i).getY1());
-			// obstacle.addPoint(obstacles.get(i).getX2(),
-			// obstacles.get(i).getY2());
-			// obstacle.addPoint(obstacles.get(i).getX3(),
-			// obstacles.get(i).getY3());
-
-			if (obstacle.intersects(x, y, charWidth, charHeight)) {
-
-				hasDied = true;
-
-				// break;
-
-			}
-		}
-		
-		if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
-			hasHitTarget = true;
-		}
-
-		for (int i = 0; i < helpers.size(); i++) {
-			/*
-			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
-			 * (charWidth / 2.0) <= helpers.get(i).getX() +
-			 * helpers.get(i).getHeight()) {
-			 */
-			if (helpers.get(i).intersects(x, y, charWidth, charHeight)) {
-				/*
-				 * if (y >= helpers.get(i).getY()) { hasHitTop = true; } else {
-				 * hasHitBottom = true; }
-				 */
-				hasHitTop = true;
-
-				indexOfCurrObj = i;
-				currObj = helpers.get(i);
-			}
-
-			/*
-			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
-			 * (charWidth / 2.0) <= helpers.get(i).getX() +
-			 * helpers.get(i).getHeight()) { if (y + charHeight <=
-			 * helpers.get(i).getY() || y >= helpers.get(i).getY()) { if (y >=
-			 * helpers.get(i).getY()) { hasHitTop = true;
-			 * 
-			 * indexOfCurrObj = i; currObj = helpers.get(i);
-			 * 
-			 * // break; } else {//if (y + charHeight <= helpers.get(i).getY())
-			 * { hasHitBottom = true;
-			 * 
-			 * indexOfCurrObj = i; currObj = helpers.get(i);
-			 * 
-			 * // break; } }
-			 * 
-			 * // ss.setVelocity(); } }
-			 */
-
-		}
-	}
+//	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, Target t,
+//			int screenWidth, int screenHeight) {
+//
+//		if (x <= -charWidth / 2.0 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
+//			hasDied = true;
+//		}
+//
+//		for (int i = 0; i < obstacles.size(); i++) {
+//
+//			Polygon obstacle = obstacles.get(i).getPolygon();
+//
+//			// obstacle.addPoint(obstacles.get(i).getX1(),
+//			// obstacles.get(i).getY1());
+//			// obstacle.addPoint(obstacles.get(i).getX2(),
+//			// obstacles.get(i).getY2());
+//			// obstacle.addPoint(obstacles.get(i).getX3(),
+//			// obstacles.get(i).getY3());
+//
+//			if (obstacle.intersects(x, y, charWidth, charHeight)) {
+//
+//				hasDied = true;
+//
+//				// break;
+//
+//			}
+//		}
+//
+//		if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
+//			hasHitTarget = true;
+//		}
+//
+//		for (int i = 0; i < helpers.size(); i++) {
+//			/*
+//			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
+//			 * (charWidth / 2.0) <= helpers.get(i).getX() +
+//			 * helpers.get(i).getHeight()) {
+//			 */
+//			if (helpers.get(i).intersects(x, y, charWidth, charHeight)) {
+//				/*
+//				 * if (y >= helpers.get(i).getY()) { hasHitTop = true; } else {
+//				 * hasHitBottom = true; }
+//				 */
+//				hasHitTop = true;
+//
+//				indexOfCurrObj = i;
+//				currObj = helpers.get(i);
+//			}
+//
+//			/*
+//			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
+//			 * (charWidth / 2.0) <= helpers.get(i).getX() +
+//			 * helpers.get(i).getHeight()) { if (y + charHeight <=
+//			 * helpers.get(i).getY() || y >= helpers.get(i).getY()) { if (y >=
+//			 * helpers.get(i).getY()) { hasHitTop = true;
+//			 *
+//			 * indexOfCurrObj = i; currObj = helpers.get(i);
+//			 *
+//			 * // break; } else {//if (y + charHeight <= helpers.get(i).getY())
+//			 * { hasHitBottom = true;
+//			 *
+//			 * indexOfCurrObj = i; currObj = helpers.get(i);
+//			 *
+//			 * // break; } }
+//			 *
+//			 * // ss.setVelocity(); } }
+//			 */
+//
+//		}
+//	}
 
 	public boolean getHasHitTarget() {
 		boolean b = hasHitTarget;
@@ -214,26 +209,26 @@ public class Character {
 		return b;
 	}
 
-	public void setXY(int x, int y) {
-		this.x = x - 23;
-		this.y = y - 23;
-
-		xVel = ss.getXVelocity() * 15;
-
-		// if (!ss.getIsNegative()) {
-		// yVel = -(ss.getInitialYVelocity() + 15);
-		// } else {
-		yVel = ss.getInitialYVelocity() * 15;
-		// }
-
-		hasDied = false;
-	}
+//	public void setXY(int x, int y) {
+//		this.x = x - 23;
+//		this.y = y - 23;
+//
+//		xVel = ss.getXVelocity() * 15;
+//
+//		// if (!ss.getIsNegative()) {
+//		// yVel = -(ss.getInitialYVelocity() + 15);
+//		// } else {
+//		yVel = ss.getInitialYVelocity() * 15;
+//		// }
+//
+//		hasDied = false;
+//	}
 
 	// code this later
 
-	public HelperObject getCurrObj() {
-		return currObj;
-	}
+	//public HelperObject getCurrObj() {
+//		return currObj;
+//	}
 
 	public int getIndexOfCurrObj() {
 		return indexOfCurrObj;

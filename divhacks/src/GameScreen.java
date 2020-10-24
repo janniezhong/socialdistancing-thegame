@@ -27,7 +27,6 @@ import javax.swing.Timer;
 
 public class GameScreen extends JPanel implements MouseListener, MouseMotionListener, ActionListener {
 
-	private Slingshot slingshot;
 	protected Character character;
 	private Target target;
 	private Image charImg;
@@ -45,15 +44,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 																			// then
 																			// released
 
-	protected ArrayList<HelperObject> helpers;
-	protected ArrayList<Obstacle> obstacles;
+
 	private int level;
 	private LevelZero level0;
-	private LevelOne level1;
-	private LevelTwo level2;
-	private LevelThree level3;
-	private LevelFour level4;
-	private LevelFive level5;
+
 	
 	private boolean hasHitTarget, hasDied;
 
@@ -87,8 +81,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		hasDied = false;
 		
 		charImg = (new ImageIcon("shelbyface.png").getImage());
-		slingshot = new Slingshot();
-		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot, as);
+
+		character = new Character(40, 340, charSize, charSize + 10, charImg, as);
 		timeTracker = new TimeTracker(character);
 		timeTracker.startTimeTracker();
 
@@ -101,13 +95,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 		level0 = new LevelZero();
-		level1 = new LevelOne();
-		level2 = new LevelTwo();
-		level3 = new LevelThree();
-		level4 = new LevelFour();
-		level5 = new LevelFive();
 
-		helpers = new ArrayList<>();
 
 	}
 
@@ -196,12 +184,12 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.drawString("Click and drop", 660, 25);
 		g.drawString("to use the blocks", 658, 40);
 
-		// Obstacles
-
-		for (int i = 0; i < obstacles.size(); i++) {
-			Obstacle obstacle = obstacles.get(i);
-			obstacle.drawObstacle(g);
-		}
+//		// Obstacles
+//
+//		for (int i = 0; i < obstacles.size(); i++) {
+//			Obstacle obstacle = obstacles.get(i);
+//			obstacle.drawObstacle(g);
+//		}
 
 		// button to change editability
 		g.setColor(Color.GREEN);
@@ -228,49 +216,49 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			g.setColor(Color.BLACK);
 			g.drawString("No Editing", 695, 420);
 		}
-		for (int i = 0; i < helpers.size(); i++) {
-			HelperObject obj = helpers.get(i);
-			obj.draw(g, Color.WHITE);
-
-		}
+//		for (int i = 0; i < helpers.size(); i++) {
+//			HelperObject obj = helpers.get(i);
+//			obj.draw(g, Color.WHITE);
+//
+//		}
 		
 		
 		timeTracker.stopTimeTracker();
 
 	}
 
-	public int setLevel(int lvl) {
-
-		level = lvl;
-		
-		if (level == 0){
-			
-			obstacles = level0.typeOfObstacles();
-			
-		} else if (level == 1) {
-
-			obstacles = level1.typeOfObstacles();
-
-		} else if (level == 2) {
-
-			obstacles = level2.typeOfObstacles();
-
-		} else if (level == 3) {
-
-			obstacles = level3.typeOfObstacles();
-
-		} else if (level == 4) {
-
-			obstacles = level4.typeOfObstacles();
-
-		} else {
-
-			obstacles = level5.typeOfObstacles();
-
-		}
-		return level;
-
-	}
+//	public int setLevel(int lvl) {
+//
+//		level = lvl;
+//
+//		if (level == 0){
+//
+//			obstacles = level0.typeOfObstacles();
+//
+//		} else if (level == 1) {
+//
+//			obstacles = level1.typeOfObstacles();
+//
+//		} else if (level == 2) {
+//
+//			obstacles = level2.typeOfObstacles();
+//
+//		} else if (level == 3) {
+//
+//			obstacles = level3.typeOfObstacles();
+//
+//		} else if (level == 4) {
+//
+//			obstacles = level4.typeOfObstacles();
+//
+//		} else {
+//
+//			obstacles = level5.typeOfObstacles();
+//
+//		}
+//		return level;
+//
+//	}
 
 	/*
 	 * public void run() {
@@ -344,10 +332,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			// if true, which means have already clicked on a block
 			else {
 				if (xClick < 590) {
-					if (helpers.size() < 10) {
-						helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
-						helperObj = false;
-					}
+//					if (helpers.size() < 10) {
+//						helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
+//						helperObj = false;
+//					}
 
 				}
 
@@ -380,43 +368,43 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if (slingPressed) {
-			slingPressed = false;
-			slingInitTimeSet = false; // mark if we have set initial time yet
-			int x = e.getX() - 23;
-			int y = e.getY() - 23;
-			slingshot.setXY(x, y, character);
-			character.setXY(x, y);
-
-			slingReleased = true;
-
-			isEditable = false;
-
-			// int heightI = e.getY();
-			// int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
-			//
-			// slingshot.setObjectHeight(heightI, heightF);
-			//
-			//
-			//
-			//
-			// character.launch(time.getTime());
-
-			slingReleased = true;
-
-			isEditable = false;
-
-			// int heightI = e.getY();
-			// int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
-			//
-			// slingshot.setObjectHeight(heightI, heightF);
-			//
-			//
-			//
-			//
-			// character.launch(time.getTime());
-
-		}
+//		if (slingPressed) {
+//			slingPressed = false;
+//			slingInitTimeSet = false; // mark if we have set initial time yet
+//			int x = e.getX() - 23;
+//			int y = e.getY() - 23;
+//			slingshot.setXY(x, y, character);
+//			character.setXY(x, y);
+//
+//			slingReleased = true;
+//
+//			isEditable = false;
+//
+//			// int heightI = e.getY();
+//			// int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
+//			//
+//			// slingshot.setObjectHeight(heightI, heightF);
+//			//
+//			//
+//			//
+//			//
+//			// character.launch(time.getTime());
+//
+//			slingReleased = true;
+//
+//			isEditable = false;
+//
+//			// int heightI = e.getY();
+//			// int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
+//			//
+//			// slingshot.setObjectHeight(heightI, heightF);
+//			//
+//			//
+//			//
+//			//
+//			// character.launch(time.getTime());
+//
+//		}
 
 		repaint();
 	}
@@ -472,10 +460,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 			// System.out.println("launch....");
 
-			character.launch();
-			character.checkHasCollided(helpers, obstacles, target, 800, 600);
-
-			slingshot.setVelocity(character);
+//			character.launch();
+//			character.checkHasCollided(helpers, obstacles, target, 800, 600);
+//
+//			slingshot.setVelocity(character);
 
 			repaint();
 
@@ -553,7 +541,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 
-		helpers = new ArrayList<>();
+//		helpers = new ArrayList<>();
 	}
 	
 	public Character getCharacter (){
