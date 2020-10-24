@@ -50,13 +50,6 @@ public class Character {
 		return xVel;
 	}
 
-	public double getYVel() {
-		return yVel;
-	}
-
-	public void setYVel(double yVel) {
-		this.yVel = yVel;
-	}
 
 	public void setXVel(double xVel) {
 		this.xVel = xVel;
@@ -67,30 +60,6 @@ public class Character {
 
 	}
 
-	public int getY() {
-		return y;
-	}
-
-	public void launch() {
-		// double timeDiff = (currentTime - beginTime) * 50;
-		// ss.incrementJumpNum();
-		// ss.setVelocity();
-
-		x += xVel;
-		y += yVel;
-
-
-		hasHitLeft = false;
-		hasHitRight = false;
-
-		// xChange = (int) (ss.getXVelocity() * timeDiff);
-		// yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 *
-		// Slingshot.GRAVITY * Math.pow(timeDiff, 2));
-
-		// int dummy = 0;
-		// dummy += 1;
-
-	}
 
 //	public void checkHasCollided(ArrayList<Obstacle> obstacles, int screenWidth, int screenHeight) {
 //
