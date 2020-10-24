@@ -17,15 +17,16 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.*;
+
 
 //graphics of the game screen, background 
 //has character, slingshot, target, + the menu w/ the helper blocks
 
-public class GameScreen extends JPanel implements MouseListener, MouseMotionListener, ActionListener {
+public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 	protected Character character;
 	private Target target;
@@ -48,14 +49,12 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int level;
 	private LevelZero level0;
 
-	
 	private boolean hasHitTarget, hasDied;
 
 	private int t;
 
 	private int x, y;
 
-	private boolean isEditable;
 	private AllScreen as;
 	// still need to call as.changeScreen("Results") somewhere
 
@@ -90,7 +89,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		slingReleased = false;
 
-		isEditable = true;
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
@@ -191,31 +189,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 //			obstacle.drawObstacle(g);
 //		}
 
-		// button to change editability
-		g.setColor(Color.GREEN);
-		g.fillRect(700, 400, 60, 30);
-		g.setColor(Color.BLACK);
-		g.drawString("Editing", 705, 420);
 
-		if (isEditable) {
 
-			// Helper Objects
-			if (helperObj) {
-				g.setColor(Color.CYAN);
-				g.fillRect(700, 150, objWidth, objHeight);
-
-			} else {
-				g.setColor(Color.WHITE);
-				g.fillRect(700, 150, objWidth, objHeight);
-
-			}
-
-		} else {
-			g.setColor(Color.RED);
-			g.fillRect(690, 400, 80, 30);
-			g.setColor(Color.BLACK);
-			g.drawString("No Editing", 695, 420);
-		}
 //		for (int i = 0; i < helpers.size(); i++) {
 //			HelperObject obj = helpers.get(i);
 //			obj.draw(g, Color.WHITE);
@@ -227,38 +202,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 	}
 
-//	public int setLevel(int lvl) {
-//
-//		level = lvl;
-//
-//		if (level == 0){
-//
-//			obstacles = level0.typeOfObstacles();
-//
-//		} else if (level == 1) {
-//
-//			obstacles = level1.typeOfObstacles();
-//
-//		} else if (level == 2) {
-//
-//			obstacles = level2.typeOfObstacles();
-//
-//		} else if (level == 3) {
-//
-//			obstacles = level3.typeOfObstacles();
-//
-//		} else if (level == 4) {
-//
-//			obstacles = level4.typeOfObstacles();
-//
-//		} else {
-//
-//			obstacles = level5.typeOfObstacles();
-//
-//		}
-//		return level;
-//
-//	}
 
 	/*
 	 * public void run() {
@@ -294,228 +237,49 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	 * 
 	 */
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	double horiz=0, velx=0;
+	
+	Timer time = new Timer(5,this);
+
+	public void second(){
+		time.start();
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
 
 	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.fill(new Ellipse2D.Double(horiz,0,40,40));
 	}
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	// right click to rotate? or have different helper obj? ignore rotation for
-	// now
-	public void mousePressed(MouseEvent e) {
-
-		xClick = e.getX();
-		yClick = e.getY();
-		int button = e.getButton();
-
-		if (button == MouseEvent.BUTTON1) {
-			if (helperObj == false) {
-
-				if (xClick >= 700 && xClick <= 700 + objWidth && yClick >= 150 - 10 && yClick <= 150 + objHeight + 10) {
-
-					helperObj = true;
-				}
-
-			}
-			// if true, which means have already clicked on a block
-			else {
-				if (xClick < 590) {
-//					if (helpers.size() < 10) {
-//						helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
-//						helperObj = false;
-//					}
-
-				}
-
-			}
-
-			if (isEditable == false) {
-				if (slingPressed == false) {
-					// if it's approximately near the slingshot bc too lazy for
-					// precise coordinates lol
-					if (xClick >= 50 && xClick <= 120 && yClick >= 300 && yClick <= 400) {
-						slingPressed = true;
-						dragX = xClick;
-						dragY = yClick;
-					} else {
-
-					}
-				}
-			}
-
-		}
-
-		if (xClick >= 670 && xClick <= 700 + 60 && yClick >= 400 && yClick <= 400 + 30) {
-			isEditable = false;
-
-			repaint();
-		}
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-//		if (slingPressed) {
-//			slingPressed = false;
-//			slingInitTimeSet = false; // mark if we have set initial time yet
-//			int x = e.getX() - 23;
-//			int y = e.getY() - 23;
-//			slingshot.setXY(x, y, character);
-//			character.setXY(x, y);
-//
-//			slingReleased = true;
-//
-//			isEditable = false;
-//
-//			// int heightI = e.getY();
-//			// int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
-//			//
-//			// slingshot.setObjectHeight(heightI, heightF);
-//			//
-//			//
-//			//
-//			//
-//			// character.launch(time.getTime());
-//
-//			slingReleased = true;
-//
-//			isEditable = false;
-//
-//			// int heightI = e.getY();
-//			// int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
-//			//
-//			// slingshot.setObjectHeight(heightI, heightF);
-//			//
-//			//
-//			//
-//			//
-//			// character.launch(time.getTime());
-//
-//		}
-
+	public void actionPerformed(ActionEvent e){
 		repaint();
+		horiz+=velx;
+	}
+	
+	public void left(){
+		velx=-1.5;
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		if (isEditable == false) {
-			if (slingPressed == true) {
-				if (e.getX() < 90) {
-					dragX = e.getX();
-					dragY = e.getY();
-					repaint();
-				}
-			}
+	public void right(){
+		velx=1.5;
+	}
+
+	public void keyPressed(KeyEvent e){
+		int code = e.getKeyCode();
+		if(code == KeyEvent.VK_LEFT){
+			left();
 		}
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static boolean getSlingReleased() {
-		return slingReleased;
-	}
-
-	public static void setSlingReleased(Boolean b) {
-		slingReleased = b;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		// t++;
-		// while(true){
-		
-		repaint();
-
-		// CHANGE
-		if (getSlingReleased()) {
-
-			if (!slingInitTimeSet) {
-				// set start time of fling, so that we can compute diff
-				// correctly
-				as.panel.character.setInitialTime(timeTracker.getTime());
-				// slingshot.setXY(dragX, dragY);
-				// character.setXY(dragX, dragY);
-				slingInitTimeSet = true;
-			}
-
-			// System.out.println("launch....");
-
-//			character.launch();
-//			character.checkHasCollided(helpers, obstacles, target, 800, 600);
-//
-//			slingshot.setVelocity(character);
-
-			repaint();
-
-			if (character.getHasHitTarget() == true) {
-				setSlingReleased(false);
-				hasHitTarget = true;
-				character.reset();
-				as.changeScreen("Results");
-			} else if (character.getHasDied() == true) {
-				setSlingReleased(false); // only release once
-				hasDied = true;
-				character.reset();
-				as.changeScreen("Results");
-			}
-
-			// repaint();
-
-			// CHANGE
-			/*
-			 * if (getSlingReleased()) {
-
-				if (!slingInitTimeSet) {
-					// set start time of fling, so that we can compute diff
-					// correctly
-					AllScreen.panel.character.setInitialTime(time.getTime());
-					// slingshot.setXY(dragX, dragY);
-					// character.setXY(dragX, dragY);
-					slingInitTimeSet = true;
-				}
-
-				// System.out.println("launch....");
-
-				character.launch();
-				character.checkHasCollided(helpers, obstacles, 800, 600);
-
-				slingshot.setVelocity(character);
-
-				repaint();
-
-				if (character.getHasDied() == true) {
-					setSlingReleased(false); // only release once
-					character.reset();
-					as.changeScreen("Results");
-				}
-
-			}
-			*/
+		if(code == KeyEvent.VK_RIGHT){
+			right();
 		}
-
-		// System.out.println("repainting....");
-
 	}
+	public void keyTyped(KeyEvent e){}
+	public void keyReleased(KeyEvent e){}
+
 
 	public void reset() {
 
@@ -535,8 +299,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		timeTracker = new TimeTracker(character);
 
 		slingReleased = false;
-
-		isEditable = true;
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
