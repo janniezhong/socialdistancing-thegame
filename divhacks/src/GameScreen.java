@@ -12,9 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -144,7 +141,6 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 					character.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
 				} else {
 					x = character.getX();
-					y = character.getY();
 					character.draw(g, x, y, charSize, charSize + 10);
 
 			// System.out.print("draw x " + x + " y " + y + "\n");
