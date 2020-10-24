@@ -13,11 +13,11 @@ public class Character {
 	private Image charImg;
 	// private boolean isDead;
 	private double beginTime;
-	private static boolean hasHitBottom, hasHitTop;
+	private static boolean hasHitLeft, hasHitRight;
 	private boolean hasDied;
-	private boolean hasHitTarget;
+	private boolean hasHitObstacle;
 	private int indexOfCurrObj;
-
+	private int maskNumber;
 	private AllScreen as;
 	private double xVel, yVel;
 
@@ -31,12 +31,13 @@ public class Character {
 		yVel = 0;
 		charImg = character;
 		beginTime = 0;
-		hasHitBottom = false;
-		hasHitTop = false;
+		hasHitLeft = false;
+		hasHitRight = false;
 		hasDied = false;
 		charWidth = w;
 		charHeight = h;
 		indexOfCurrObj = -1;
+		maskNumber = 3;
 		this.as = as;
 	}
 
@@ -70,11 +71,6 @@ public class Character {
 		return y;
 	}
 
-	public boolean isOnTarget() {
-
-		return true;
-	}
-
 	public void launch() {
 		// double timeDiff = (currentTime - beginTime) * 50;
 		// ss.incrementJumpNum();
@@ -84,8 +80,8 @@ public class Character {
 		y += yVel;
 
 
-		hasHitTop = false;
-		hasHitBottom = false;
+		hasHitLeft = false;
+		hasHitRight = false;
 
 		// xChange = (int) (ss.getXVelocity() * timeDiff);
 		// yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 *
@@ -96,8 +92,7 @@ public class Character {
 
 	}
 
-//	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, Target t,
-//			int screenWidth, int screenHeight) {
+//	public void checkHasCollided(ArrayList<Obstacle> obstacles, int screenWidth, int screenHeight) {
 //
 //		if (x <= -charWidth / 2.0 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
 //			hasDied = true;
@@ -115,16 +110,12 @@ public class Character {
 //			// obstacles.get(i).getY3());
 //
 //			if (obstacle.intersects(x, y, charWidth, charHeight)) {
-//
-//				hasDied = true;
-//
-//				// break;
-//
+//				maskNumber --;
+//				if (maskNumber == 0){
+//					hasDied = true;
+//					break;
+//				}
 //			}
-//		}
-//
-//		if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
-//			hasHitTarget = true;
 //		}
 //
 //		for (int i = 0; i < helpers.size(); i++) {
@@ -166,8 +157,8 @@ public class Character {
 //		}
 //	}
 
-	public boolean getHasHitTarget() {
-		boolean b = hasHitTarget;
+	public boolean getHasHitObstacle() {
+		boolean b = hasHitObstacle;
 		return b;
 	}
 
@@ -197,11 +188,11 @@ public class Character {
 	// y =
 
 	public static boolean getHasHitTop() {
-		return hasHitTop;
+		return hasHitLeft;
 	}
 
 	public static boolean getHasHitBottom() {
-		return hasHitBottom;
+		return hasHitRight;
 	}
 
 	public boolean getHasDied() {
@@ -235,10 +226,10 @@ public class Character {
 	}
 
 	public void reset() {
-		hasHitBottom = false;
-		hasHitTop = false;
+		hasHitLeft = false;
+		hasHitRight = false;
 		hasDied = false;
-		hasHitTarget = false;
+		hasHitObstacle = false;
 
 		x = 65 - 23;
 		y = 370 - 23;

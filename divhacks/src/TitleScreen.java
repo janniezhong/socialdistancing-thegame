@@ -7,38 +7,46 @@ import javax.swing.*;
 
 public class TitleScreen extends Screen implements ActionListener {
 
-	private Image titleImg;
+	//private Image titleImg;
 	
 	private AllScreen as;
-	private int t;
+	//private int t;
 	
-	private Image nyanCat;
+	//private Image nyanCat;
 	private int xPos, yPos;
 
 	public TitleScreen(AllScreen as) {
 		this.as = as;
-		titleImg = (new ImageIcon("FlingTitleScreen.png").getImage());
-		nyanCat = (new ImageIcon("poptart.gif").getImage());
+		//titleImg = (new ImageIcon("FlingTitleScreen.png").getImage());
+		//nyanCat = (new ImageIcon("poptart.gif").getImage());
 		
-		t = 0;
-		Timer clock = new Timer(30, this);
-		clock.start();
-		xPos = -200;
-		yPos = 75;
+		//t = 0;
+		//Timer clock = new Timer(30, this);
+		//clock.start();
+		//xPos = -200;
+		//yPos = 75;
 	}
 
 	public void paintComponent(Graphics g) {
-		g.drawImage(titleImg, 0, 0, 800, 600, this);
+
+		Graphics2D g2 = (Graphics2D) g;
+
+		//g.drawImage(titleImg, 0, 0, 800, 600, this);
 		
-		if (xPos > 1000) {
-			xPos = -200;
-		}
+		//if (xPos > 1000) {
+			//xPos = -200;
+		//}
 		
-		g.drawImage(nyanCat, xPos, yPos, 200, 150, this);
+		//g.drawImage(nyanCat, xPos, yPos, 200, 150, this);
 
 		Font newFont = new Font("Arial", Font.BOLD, 20);
 		g.setFont(newFont);
-		g.drawString("Click on the unicorn Pusheen to continue!", 185, 330);
+		g.drawString("The Social Distancing Game", 185, 50);
+		
+		g.setColor(new Color(192,192,19));
+		g2d.fillRoundRect(180, 330, 100, 50, 30, 30);
+		g.setColor(new Color(0,0,0));
+		g.drawString("Start!",180, 330);
 
 	}
 
@@ -47,13 +55,12 @@ public class TitleScreen extends Screen implements ActionListener {
 		int xClick = e.getX();
 		int yClick = e.getY();
 
-		if(xClick >= 460 && xClick <= 700 && yClick >= 410 && yClick <= 550) {
-			//AllScreen.SCREEN = 7;
-			as.changeScreen("Level");
+		if(xClick >= 180 && xClick <= 280 && yClick >= 330 && yClick <= 380) {
+			as.changeScreen("Start");
 		}
 	}
 
-	@Override
+	/*@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		t++;
@@ -62,7 +69,7 @@ public class TitleScreen extends Screen implements ActionListener {
 
 		
 		repaint();
-	}
+	}*/
 
 
 }
