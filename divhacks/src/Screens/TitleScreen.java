@@ -1,7 +1,10 @@
+package Screens;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import GameManagement.*;
 
 import javax.swing.*;
 
@@ -41,7 +44,7 @@ public class TitleScreen extends Screen implements ActionListener {
 
 		Font newFont = new Font("Arial", Font.BOLD, 20);
 		g.setFont(newFont);
-		g.drawString("The Social Distancing Game", 185, 50);
+		g.drawString("The Social Distancing GameManagement.Game", 185, 50);
 		
 		g.setColor(new Color(192,192,19));
 		g2.fillRoundRect(180, 330, 100, 50, 30, 30);

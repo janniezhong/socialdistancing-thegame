@@ -1,4 +1,4 @@
-import java.awt.CardLayout;
+package GameManagement;
 
 import javax.swing.JFrame;
 
@@ -15,7 +15,7 @@ public class Game extends JFrame{
 	{
 		Game w = new Game();
 		
-		w.setTitle("Social Distancing - The Game");
+		w.setTitle("Social Distancing - The GameManagement.Game");
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		w.setBounds(100, 100, 800, 600);
 		w.add(as);
@@ -24,7 +24,7 @@ public class Game extends JFrame{
 		w.setResizable(false);
 		w.setVisible(true);
 		
-		// AllScreen.panel.run();
+		// GameManagement.AllScreen.panel.run();
 		
 		// Fling w = new Fling();
 		
@@ -34,7 +34,7 @@ public class Game extends JFrame{
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 			w.add(titlePanel);
-			System.out.println(Screen + "");
+			System.out.println(Screens.Screen + "");
 			System.out.println(level + "");
 
 		w.setResizable(false);
@@ -53,15 +53,15 @@ public class Game extends JFrame{
 /*public void run(){
 		
 		while (true){
-			if(AllScreen.SCREEN == 6) {
-				AllScreen.cards.show(this, "Title");
+			if(GameManagement.AllScreen.SCREEN == 6) {
+				GameManagement.AllScreen.cards.show(this, "Title");
 			}
-			else if(AllScreen.SCREEN == 7)
-				AllScreen.cards.show(this, "Level");
-			else if(AllScreen.SCREEN == 8)
-				AllScreen.cards.show(this, "Game");
-			else if(AllScreen.SCREEN == 9)
-				AllScreen.cards.show(this, "Results");
+			else if(GameManagement.AllScreen.SCREEN == 7)
+				GameManagement.AllScreen.cards.show(this, "Level");
+			else if(GameManagement.AllScreen.SCREEN == 8)
+				GameManagement.AllScreen.cards.show(this, "GameManagement.Game");
+			else if(GameManagement.AllScreen.SCREEN == 9)
+				GameManagement.AllScreen.cards.show(this, "Results");
 			
 		}
 		

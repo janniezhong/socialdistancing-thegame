@@ -1,10 +1,12 @@
+package Screens;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import javax.swing.*;
+import Components.Player;
+import GameManagement.*;
 
-//will have shelby's face + results
-//find star image clipart? three out of five depending on time
+
 public class ResultScreen extends Screen {
 
 	private int score = 1;
@@ -13,14 +15,14 @@ public class ResultScreen extends Screen {
 	private Image shelbyFace;
 	private AllScreen as;
 	private TimeTracker timeTracker;
-	private Character character;
+	private Player player;
 	// private boolean isDead;
 
 	public ResultScreen(AllScreen as) {
 		this.as = as;
-		
-		character = as.panel.getCharacter();
-		timeTracker = new TimeTracker(character);
+
+		player = as.panel.getPlayer();
+		timeTracker = new TimeTracker(player);
 
 		time = timeTracker.getTime();
 		// isDead = character.getHasDied();

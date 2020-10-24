@@ -1,6 +1,11 @@
+package GameManagement;
+
+import Screens.GameScreen;
+import Screens.ResultScreen;
+import Screens.TitleScreen;
+
+
 import java.awt.CardLayout;
-import java.awt.Image;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -27,7 +32,7 @@ public class AllScreen extends JPanel{
 		
 		this.setLayout(cards);
 	    this.add(titlePanel, "Title");
-	    this.add(panel, "Game");
+	    this.add(panel, "GameManagement.Game");
 	    this.add(resultPanel, "Results");
 	    
 	     cards.show(this, "Title");
@@ -50,11 +55,11 @@ public class AllScreen extends JPanel{
 			
 			/*
 			this.remove(panel);
-			panel = new GameScreen(this);
+			panel = new Screens.GameScreen(this);
 			panel.setLevel(LEVEL);
 			panel.addMouseListener(panel);
 			panel.addMouseMotionListener(panel);
-			this.add(panel, "Game");
+			this.add(panel, "GameManagement.Game");
 			*/
 			panel.reset();
 		}

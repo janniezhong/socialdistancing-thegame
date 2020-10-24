@@ -1,12 +1,11 @@
-import java.awt.Color.*;
+package Screens;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,10 +13,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.awt.geom.*;
+
+import Components.Player;
+import GameManagement.*;
+
 
 
 //graphics of the game screen, background 
@@ -25,7 +27,7 @@ import java.awt.geom.*;
 
 public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
-	protected Character character;
+	protected Player player;
 	private Image charImg;
 	private int charSize;
 	private TimeTracker timeTracker;
@@ -76,8 +78,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 
-		character = new Character(40, 340, charSize, charSize + 10, charImg, as);
-		timeTracker = new TimeTracker(character);
+		player = new Player(40, 340, charSize, charSize + 10, charImg, as);
+		timeTracker = new TimeTracker(player);
 		timeTracker.startTimeTracker();
 
 
@@ -138,10 +140,11 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		
 		// character
 				if (slingPressed == true) {
-					character.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
+					player.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
 				} else {
-					x = character.getX();
-					character.draw(g, x, y, charSize, charSize + 10);
+					x = player.getX();
+					y = player.getY();
+					player.draw(g, x, y, charSize, charSize + 10);
 
 			// System.out.print("draw x " + x + " y " + y + "\n");
 
@@ -175,7 +178,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 //		// Obstacles
 //
 //		for (int i = 0; i < obstacles.size(); i++) {
-//			Obstacle obstacle = obstacles.get(i);
+//			Components.Obstacle obstacle = obstacles.get(i);
 //			obstacle.drawObstacle(g);
 //		}
 
@@ -198,21 +201,21 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 * 
 	 * while(true){
 	 * 
-	 * // CHANGE if (AllScreen.panel.getSlingReleased()) {
+	 * // CHANGE if (GameManagement.AllScreen.panel.getSlingReleased()) {
 	 * 
 	 * if (!slingInitTimeSet) { // set start time of fling, so that we can
 	 * compute diff correctly
-	 * AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
+	 * GameManagement.AllScreen.panel.character.setInitialTime(GameManagement.TimeTracker.getTime());
 	 * slingInitTimeSet = true; }
 	 * 
 	 * System.out.println("launch....");
 	 * 
-	 * AllScreen.panel.character.launch(TimeTracker.getTime());
-	 * AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers,
-	 * AllScreen.panel.obstacles, 800, 600);
+	 * GameManagement.AllScreen.panel.character.launch(GameManagement.TimeTracker.getTime());
+	 * GameManagement.AllScreen.panel.character.checkHasCollided(GameManagement.AllScreen.panel.helpers,
+	 * GameManagement.AllScreen.panel.obstacles, 800, 600);
 	 * 
 	 * if(character.getHasDied() == true) {
-	 * AllScreen.panel.setSlingReleased(false); // only release once
+	 * GameManagement.AllScreen.panel.setSlingReleased(false); // only release once
 	 * as.changeScreen("Results"); } }
 	 * 
 	 * repaint(); // System.out.println("repainting....");
@@ -284,9 +287,9 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 		// charImg = (new ImageIcon("shelbyface.png").getImage());
 		// slingshot = new Slingshot();
-		// character = new Character(40, 340, charSize, charSize + 10, charImg,
+		// character = new Components.Character(40, 340, charSize, charSize + 10, charImg,
 		// slingshot);
-		timeTracker = new TimeTracker(character);
+		timeTracker = new TimeTracker(player);
 
 		slingReleased = false;
 
@@ -296,9 +299,9 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 //		helpers = new ArrayList<>();
 	}
 	
-	public Character getCharacter (){
+	public Player getPlayer(){
 		
-		return character;
+		return player;
 	}
 	
 	public boolean getHasHitTarget() {

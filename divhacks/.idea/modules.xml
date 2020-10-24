@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Java2017Final.iml" filepath="$PROJECT_DIR$/Java2017Final.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/divhacks.iml" filepath="$PROJECT_DIR$/.idea/divhacks.iml" />
     </modules>
   </component>
 </project>

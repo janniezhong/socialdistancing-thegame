@@ -1,9 +1,12 @@
+package Components;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;
 import java.util.ArrayList;
+import GameManagement.*;
 
-public class Character {
+public class Player {
 	// FIELDS
 	private int x; // location of character
 	private int y;
@@ -22,7 +25,7 @@ public class Character {
 	private double xVel, yVel;
 
 	// CONSTRUCTORS
-	public Character(int xCoor, int yCoor, int w, int h, Image character, AllScreen as) {
+	public Player(int xCoor, int yCoor, int w, int h, Image character, AllScreen as) {
 		x = xCoor;
 		y = yCoor;
 		// xChange = 0;
@@ -65,7 +68,7 @@ public class Character {
 	}
 
 
-//	public void checkHasCollided(ArrayList<Obstacle> obstacles, int screenWidth, int screenHeight) {
+//	public void checkHasCollided(ArrayList<Components.Obstacle> obstacles, int screenWidth, int screenHeight) {
 //
 //		if (x <= -charWidth / 2.0 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
 //			hasDied = true;
