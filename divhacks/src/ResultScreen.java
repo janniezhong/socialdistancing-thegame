@@ -7,8 +7,8 @@ import javax.swing.*;
 //find star image clipart? three out of five depending on time
 public class ResultScreen extends Screen {
 
-	private int score;
-	private int time;
+	private int score = 1;
+	private int time = 60;
 	private Image starImg;
 	private Image shelbyFace;
 	private AllScreen as;
@@ -18,8 +18,7 @@ public class ResultScreen extends Screen {
 
 	public ResultScreen(AllScreen as) {
 		this.as = as;
-		starImg = (new ImageIcon("starImg.png").getImage());
-		shelbyFace = (new ImageIcon("shelbyface.png").getImage());
+		
 		character = as.panel.getCharacter();
 		timeTracker = new TimeTracker(character);
 
@@ -48,21 +47,21 @@ public class ResultScreen extends Screen {
 
 	public void paintComponent(Graphics g) {
 
-		System.out.println(as.panel.getHasHitTarget()+ "");
-		if (as.panel.getHasHitTarget()) {
-			if (time > 40)
-				score = 1;
-			else if (time > 20 && time <= 40)
-				score = 2;
-			else if (time > 10 && time <= 20)
-				score = 3;
-			else if (time > 5 && time <= 10)
-				score = 4;
-			else // ((time>0 && time<= 30))
-				score = 5;
-		} else {
-			score = 0;
-		}
+//		System.out.println(as.panel.getHasHitTarget()+ "");
+//		if (as.panel.getHasHitTarget()) {
+//			if (time > 40)
+//				score = 1;
+//			else if (time > 20 && time <= 40)
+//				score = 2;
+//			else if (time > 10 && time <= 20)
+//				score = 3;
+//			else if (time > 5 && time <= 10)
+//				score = 4;
+//			else // ((time>0 && time<= 30))
+//				score = 5;
+//		} else {
+//			score = 0;
+//		}
 
 		as.panel.setHasHitTarget(false);
 		as.panel.setHasDied(false);

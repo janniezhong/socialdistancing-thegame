@@ -29,7 +29,6 @@ import java.awt.geom.*;
 public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 	protected Character character;
-	private Target target;
 	private Image charImg;
 	private int charSize;
 	private TimeTracker timeTracker;
@@ -47,7 +46,6 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 
 	private int level;
-	private LevelZero level0;
 
 	private boolean hasHitTarget, hasDied;
 
@@ -85,14 +83,12 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		timeTracker = new TimeTracker(character);
 		timeTracker.startTimeTracker();
 
-		target = new Target(550, 315, 80);
 
 		slingReleased = false;
 
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
-		level0 = new LevelZero();
 
 
 	}
@@ -141,8 +137,6 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 				g.setColor(PALEGREEN);
 				g.fillRect(500, 300, 150, 300);
 
-				// Target
-				target.drawTarget(g);
 
 		
 		// character

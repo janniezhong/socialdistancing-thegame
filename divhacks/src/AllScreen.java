@@ -9,7 +9,7 @@ public class AllScreen extends JPanel{
 	public static CardLayout cards;
 	private TitleScreen titlePanel;
 	private ResultScreen resultPanel;
-	private LevelScreen levelPanel;
+	//private LevelScreen levelPanel;
 	public GameScreen panel;
 	public static int SCREEN;
 	public static int LEVEL;
@@ -22,24 +22,24 @@ public class AllScreen extends JPanel{
 		panel = new GameScreen(this);
 		titlePanel = new TitleScreen(this);
 		resultPanel = new ResultScreen(this);
-		levelPanel = new LevelScreen(this);
-		
+
 
 		
 		this.setLayout(cards);
-//	    this.add(titlePanel, "Title");
-//	    this.add(levelPanel, "Level");
-//	    this.add(panel, "Game");
-//	    this.add(resultPanel, "Results");
+	    this.add(titlePanel, "Title");
+	    this.add(panel, "Game");
+	    this.add(resultPanel, "Results");
 	    
-//	     cards.show(this, "Title");
+	     cards.show(this, "Title");
 
-//		panel.addMouseListener(panel);
-//		panel.addMouseMotionListener(panel);
-//		titlePanel.addMouseListener(titlePanel);
-//		resultPanel.addMouseListener(resultPanel);
-//		levelPanel.addMouseListener(levelPanel);
-	
+
+
+		//panel.addMouseListener(panel);
+		panel.addKeyListener(panel);
+		//panel.addMouseMotionListener(panel);
+		titlePanel.addMouseListener(titlePanel);
+		resultPanel.addMouseListener(resultPanel);
+
 		
 	}
 	

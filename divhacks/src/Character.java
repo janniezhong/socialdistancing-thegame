@@ -46,6 +46,10 @@ public class Character {
 		return x;
 	}
 
+	public int getY() {
+		return y;
+	}
+
 	public double getXVel() {
 		return xVel;
 	}

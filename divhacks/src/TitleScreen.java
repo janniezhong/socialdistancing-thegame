@@ -44,7 +44,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		g.drawString("The Social Distancing Game", 185, 50);
 		
 		g.setColor(new Color(192,192,19));
-		g2d.fillRoundRect(180, 330, 100, 50, 30, 30);
+		g2.fillRoundRect(180, 330, 100, 50, 30, 30);
 		g.setColor(new Color(0,0,0));
 		g.drawString("Start!",180, 330);
 
@@ -56,20 +56,14 @@ public class TitleScreen extends Screen implements ActionListener {
 		int yClick = e.getY();
 
 		if(xClick >= 180 && xClick <= 280 && yClick >= 330 && yClick <= 380) {
-			as.changeScreen("Start");
+			as.changeScreen("Results"); // change later
 		}
 	}
 
-	/*@Override
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		t++;
-		
-		xPos += 5;
 
-		
-		repaint();
-	}*/
+	}
 
 
 }
