@@ -23,7 +23,7 @@ public class Player {
 	// CONSTRUCTORS
 	public Player(int xCoor, int w, int h, Image character, AllScreen as) {
 		x = xCoor;
-		y = 0;
+		y = 700;
 		charImg = character;
 		hasDied = false;
 		charWidth = w;
@@ -36,6 +36,10 @@ public class Player {
 	// METHODS
 	public int getX() {
 		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 
 
