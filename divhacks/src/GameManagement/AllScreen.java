@@ -19,6 +19,7 @@ public class AllScreen extends JPanel{
 	public TimeTracker t;
 	public static int SCREEN;
 	public static int LEVEL;
+	public static boolean gameInProgress;
 
 	public AllScreen(){
 		LEVEL = 1;
@@ -46,6 +47,8 @@ public class AllScreen extends JPanel{
 		titlePanel.addMouseListener(titlePanel);
 		resultPanel.addMouseListener(resultPanel);
 
+		gameInProgress = false;
+
 		
 	}
 	
@@ -63,14 +66,20 @@ public class AllScreen extends JPanel{
 			this.add(panel, "GameManagement.Game");
 			*/
 			panel.reset();
+			gameInProgress = false;
+
 		}
 		
 		if (name.equals("Game")) {
 			resultPanel.reset();
+			gameInProgress = true;
 		}
 
 		if (name.equals("Title")) {
-			cards.show(this, "Title");
+			resultPanel.reset();
+			panel.reset();
+			gameInProgress = false;
+
 		}
 		
 		

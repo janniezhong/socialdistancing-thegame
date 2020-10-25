@@ -70,7 +70,7 @@ public class ResultScreen extends Screen {
 		g.drawString("YOU DIED!", 350, 100);
 
 		g.setColor(Color.WHITE);
-		g.drawString("Your score is " /* + gs.score*/, 250, 550);
+		g.drawString("Your score is " + GameScreen.score, 250, 550);
 
 		g.setColor(new Color(192,192,192));
 		g2.fillRoundRect(325, 600, 150, 50, 30, 30);
@@ -88,13 +88,13 @@ public class ResultScreen extends Screen {
 		int yClick = e.getY();
 
 		if (xClick >= 325 && xClick <= 475 && yClick >= 600 && yClick <= 650)
-			as.changeScreen("GameManagement.Game");
+			as.changeScreen("Game");
 		else if (xClick >= 350 && xClick <= 450 && yClick >= 660 && yClick <= 710)
 			as.changeScreen("Title");
 	}
 
 	public void reset() {
-
+		GameScreen.score = 0;
 		this.as = as;
 
 		//time = TimeTracker.getTime();

@@ -33,6 +33,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	private Image charImg;
 	private int charSize;
 	private TimeTracker timeTracker;
+	public static int score;
 
 	private int objWidth, objHeight;
 
@@ -47,6 +48,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 
 	private ObstacleGenerator obstacleGen;
 	private int obstacleSpeed;
+	
 
 	public GameScreen(AllScreen as) {
 
@@ -161,7 +163,6 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 //
 //		}
 		
-		timeTracker.stopTimeTracker();
 	}
 
 
@@ -203,19 +204,18 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	
 
 	public void died(){
-		if(hasDied){
+		score = timeTracker.stopTimeTracker();
+		System.out.println(score);
+		if(score>20 && AllScreen.gameInProgress){
 			as.changeScreen("Results");
-			timeTracker.stopTimeTracker();
 		}
 	}
 
 	public void reset() {
 		hasDied = false;
 		hasHitObject = false;
-
 		x = 400;
-		y = 0;
-
+		y = 700;
 	}
 
 
@@ -237,7 +237,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	public void actionPerformed(ActionEvent e){
 		t++;
 		repaint();
-		
+		died();
 		if (obstacleGen != null){
 			obstacleGen.updateObstacles(obstacleSpeed);
 		}

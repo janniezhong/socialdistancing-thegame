@@ -11,11 +11,12 @@ public class TimeTracker implements ActionListener {
 	private static int elapsedTime;
 	//private boolean characterDead; 
 	//private Timer clock;
-	private static long beginTime, endTime;
+	private static long beginTime, endTime, currTime;
 	
 	public TimeTracker() {
 		beginTime = System.currentTimeMillis();
 		endTime = System.currentTimeMillis();
+		currTime = 0;
 		elapsedTime = 0;
 	    //clock = new Timer(1000, this); 
 	    //clock.start();
@@ -49,6 +50,12 @@ public class TimeTracker implements ActionListener {
 	    	clock.stop();
 	    	time = -1;
 	    }*/
+	}
+	public long getElapsed(){
+		currTime = System.currentTimeMillis();
+		elapsedTime = (int) ((endTime - beginTime) / 1000);
+
+		return elapsedTime;
 	}
 
 	public void incrementTime(){
