@@ -49,7 +49,7 @@ public class AllScreen extends JPanel{
 	}
 	
 	public void changeScreen(String name) {
-		// if we restart a game, make sure start from clean slate, so that we do not have leftovers from last game
+		// if we restart a game, make sure we start from clean slate, so that we do not have leftovers from last game
 		
 		if (name.equals("Results")) {
 			

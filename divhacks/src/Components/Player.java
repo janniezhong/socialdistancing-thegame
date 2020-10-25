@@ -1,7 +1,7 @@
 package Components;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedList;
 import GameManagement.*;
 
@@ -47,6 +47,9 @@ public class Player {
 
 
     public void move(int xChange) {
+
+        x += xChange;
+
         //to check if player hits left
         if (x < 100 + charWidth / 2) {
             x = 100 + charWidth / 2;
@@ -54,9 +57,6 @@ public class Player {
         //to check if player hits right
         else if (x > 700 - charWidth / 2 ) {
             x = 700 - charWidth / 2;
-        }
-        else{
-            x += xChange;
         }
     }
 
@@ -133,8 +133,8 @@ public class Player {
 
     }
 
-    public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {
-        g.drawImage(charImg, x-sizeX/2, y-sizeY/2, sizeX, sizeY, as.panel);
+    public void draw(Graphics g, int x, int y, int sizeX, int sizeY, JPanel observer) {
+        g.drawImage(charImg, x-sizeX/2, y-sizeY/2, sizeX, sizeY, observer);
 
     }
 

@@ -53,6 +53,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 		this.as = as;
 		addKeyListener(this);
+		setFocusable(true);
+
 		//second s = new second();
 		//as.add(s);
 		objWidth = 100;
@@ -63,11 +65,11 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		hasHitObject = false;
 		hasDied = false;
 		
-		charImg = (new ImageIcon("shelbyface.png").getImage());
+		charImg = (new ImageIcon("divhacks/assets/obstacles/nomask/blue_nomask.png").getImage());
 
 		obstacleGen = new ObstacleGenerator();
 
-		player = new Player(700, charSize, charSize, charImg, as);
+		player = new Player(400, charSize, charSize, charImg, as);
 		timeTracker = new TimeTracker();
 		timeTracker.startTimeTracker();
 
@@ -105,8 +107,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		// character
 
 		x = player.getX();
-		//y = player.getY();
-		player.draw(g, x, 400, charSize, charSize);
+		y = player.getY();
+		player.draw(g, x, y, charSize, charSize, this);
 
 		// System.out.print("draw x " + x + " y " + y + "\n");
 
@@ -141,6 +143,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 			Obstacle obstacle = obstacles.get(i);
 			obstacle.draw(g, 100, 100, as.panel);
 		}
+		//System.out.println("help?");
+		//obstacleGen.updateObstacles();
 
 
 
@@ -189,7 +193,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 */
 
 	public void died(){
-		if(/*hasDied*/false){
+		if(hasDied){
 			as.changeScreen("Results");
 			timeTracker.stopTimeTracker();
 		}
@@ -211,29 +215,39 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	int velx=0;
 	//Timer time = new Timer(5,this);
 
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		player.draw(g, player.getX(), 650, 100, 100);
-		//g2.fill(new Ellipse2D.Double(350,650,100,100));
-	}
+	// public void paintComponent(Graphics g){
+	// 	super.paintComponent(g);
+	// 	Graphics2D g2 = (Graphics2D) g;
+	// 	player.draw(g, player.getX(), 650, 100, 100, this);
+	// 	//g2.fill(new Ellipse2D.Double(350,650,100,100));
+	// }
 
+	@Override
 	public void actionPerformed(ActionEvent e){
+		t++;
 		repaint();
 		player.move(velx);
+		obstacleGen.updateObstacles();
+
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e){
+		//System.out.println("is this happening?");
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_LEFT){
-			velx=-3;
+			//velx=-3;
+			player.move(-3);
 		}
 		if(code == KeyEvent.VK_RIGHT){
-			velx=3;
+			//velx=3;
+			player.move(+3);
 		}
 	}
-
+	@Override
 	public void keyTyped(KeyEvent e){}
+
+	@Override
 	public void keyReleased(KeyEvent e){}
 
 	

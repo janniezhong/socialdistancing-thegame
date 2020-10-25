@@ -15,10 +15,10 @@ public class ObstacleGenerator {
         }
     }
 
-    public void updateObstacles(int y){
+    public void updateObstacles(){
         ListIterator<Obstacle> listIterator = obstacles.listIterator();
         while (listIterator.hasNext()) {
-            listIterator.next().moveY(y);
+            listIterator.next().moveY(10);
         }
 
         if (obstacles.peek().getY() >= 850){

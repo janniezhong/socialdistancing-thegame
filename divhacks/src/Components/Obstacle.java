@@ -57,7 +57,7 @@ public class Obstacle {
     }
 
 
-    public void moveY (int y){
+    public void moveY(int y){
         yPos += y;
     }
 
