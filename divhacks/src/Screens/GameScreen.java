@@ -41,6 +41,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	private int x, y;
 
 	private AllScreen as;
+	//private Second s;
 
 	public GameScreen(AllScreen as) {
 
@@ -49,6 +50,9 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		clock.start();
 
 		this.as = as;
+		addKeyListener(this);
+		//second s = new second();
+		//as.add(s);
 		objWidth = 100;
 		objHeight = 100;
 
@@ -64,8 +68,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		timeTracker.startTimeTracker();
 
 
-		Color SKYBLUE = new Color(175, 238, 238);
-		setBackground(SKYBLUE);
+		Color GROUND = new Color(61, 66, 74);
+		setBackground(GROUND);
 
 
 	}
@@ -77,44 +81,23 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		int width = getWidth();
 		int height = getHeight();
 
-		//int t = TimeTracker.getTime();
-		String time = "";
-
-		Font timeFont = new Font("SansSerif", Font.BOLD, 20);
-		g.setFont(timeFont);
-
-		if (t < 60) {
-			if (t <= 9)
-				time = "0:0" + t;
-			else if (t > 9 && t < 60)
-				time = "0:" + t;
-			else if (t > 60)
-				time = t / 60 + ":" + t % 60;
-		} else {
-			int sec = t % 60;
-			int min = t / 60;
-
-			if (sec <= 9)
-				time = min + ":0" + sec;
-			else
-				time = min + ":" + sec;
-		}
-
-		g.setColor(Color.GRAY);
-		g.drawString(time, 575, 30);
+		Font font = new Font("SansSerif", Font.BOLD, 20);
+		g.setFont(font);
 
 		// platform for character
-		Color PALEGREEN = new Color(160, 255, 100);
-		g.setColor(PALEGREEN);
-		g.fillRect(0, 400, 150, 200);
+		//Color PALEGREEN = new Color(160, 255, 100);
+		//g.setColor(PALEGREEN);
+		//g.fillRect(0, 400, 150, 200);
 
+		//Title
+		g.setColor(Color.WHITE);
+		g.drawString("Stay 6 feet away!", 325,50);
 
 		// platform for target
-		g.setColor(PALEGREEN);
-		g.fillRect(500, 300, 150, 300);
+		//g.setColor(PALEGREEN);
+		//g.fillRect(500, 300, 150, 300);
 
 
-		
 		// character
 
 		x = player.getX();
@@ -132,20 +115,30 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		g2.setStroke(new BasicStroke(5));
 
 		// slingshot body
-		Color BROWN = new Color(185, 155, 75);
-		g.setColor(BROWN);
-		g.fillRect(90, 330, 10, 70);
+		//Color BROWN = new Color(185, 155, 75);
+		//g.setColor(BROWN);
+		//g.fillRect(90, 330, 10, 70);
 
 		
-		// screen w/ all the thing
-		Color LIGHTGRAY = new Color(211, 211, 211);
+		// Road sides
+		Color LIGHTGRAY = new Color(139, 145, 148);
 		g.setColor(LIGHTGRAY);
-		g.fillRect(650, 0, 150, height);
+		g.fillRect(0, 0, 100, height);
+		g.fillRect(700, 0, 100, height);
 		g.setColor(Color.GRAY);
 		Font newFont = new Font("SansSerif", Font.PLAIN, 15);
 		g.setFont(newFont);
-		g.drawString("Click and drop", 660, 25);
-		g.drawString("to use the blocks", 658, 40);
+		//g.drawString("Click and drop", 660, 25);
+		//g.drawString("to use the blocks", 658, 40);
+		int padding=130;
+		Color LINES = new Color(61, 63, 64);
+		g.setColor(LINES);
+		for (int i=0; i<5;i++){
+			g.fillRect(0,(i+1)*padding,100,9);
+		}
+		for (int i=0; i<5;i++){
+			g.fillRect(700,(i+1)*padding,100,9);
+		}
 
 //		// Obstacles
 //
@@ -200,55 +193,48 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 * 
 	 */
 
+	public void died(){
+		if(hasDied){
+			as.changeScreen("Results");
+			timeTracker.stopTimeTracker();
+		}
+	}
+
 	public void reset() {
 		hasDied = false;
-		hasHitObstacle = false;
+		hasHitObject = false;
 
 		x = 400;
 		y = 0;
 
 	}
 
-	 //move character right and left with keyboard 
 
-	double horiz=0, velx=0;
-	
-	Timer time = new Timer(5,this);
+	//move character right and left with keyboard 
 
-	public void second(){
-		time.start();
-		addKeyListener(this);
-		setFocusable(true);
-		setFocusTraversalKeysEnabled(false);
-
-	}
+	//double horiz=0, velx=0;
+	int velx=0;
+	//Timer time = new Timer(5,this);
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		g2.fill(new Ellipse2D.Double(horiz,0,40,40));
+		player.draw(g, player.getX(), 650, 100, 100);
+		//g2.fill(new Ellipse2D.Double(350,650,100,100));
 	}
 
 	public void actionPerformed(ActionEvent e){
 		repaint();
-		horiz+=velx;
-	}
-	
-	public void left(){
-		velx=-1.5;
-	}
-
-	public void right(){
-		velx=1.5;
+		player.move(velx);
 	}
 
 	public void keyPressed(KeyEvent e){
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_LEFT){
-			left();
+			velx=-3;
 		}
 		if(code == KeyEvent.VK_RIGHT){
-			right();
+			velx=3;
 		}
 	}
 
