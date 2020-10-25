@@ -1,0 +1,33 @@
+body {
+    background-color: #FAD4C0;
+}
+
+    
+
+.header {
+    background-color: #64B6AC;
+    margin: auto;
+    height: 10rem;
+}
+
+.title {
+    text-align: center;
+    padding: 3rem;
+    letter-spacing: 3px;
+    font-family: 'Fredoka One';
+    color: #006d77;
+    font-size: 3rem;
+}
+
+.instructions{
+    background-color: #FEE9E1;
+}
+
+.instruction-title{
+    color: #B09E99;
+    font-family: 'Fredoka One';
+}
+
+.instruction-text{
+    color: #B09E99;
+}
