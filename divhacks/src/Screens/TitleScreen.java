@@ -18,9 +18,9 @@ public class TitleScreen extends Screen implements ActionListener {
 
 	public TitleScreen(AllScreen as, TimeTracker t) {
 		this.as = as;
-		runner1 = (new ImageIcon("divhacks/Runner1.png").getImage());
-		runner2 = (new ImageIcon("divhacks/Runner2.png").getImage());
-		runner3 = (new ImageIcon("divhacks/Runner3.png").getImage());
+		runner1 = (new ImageIcon("divhacks/assets/Runner1.png").getImage());
+		runner2 = (new ImageIcon("divhacks/assets/Runner2.png").getImage());
+		runner3 = (new ImageIcon("divhacks/assets/Runner3.png").getImage());
 
 		this.t = t; 
 	}
