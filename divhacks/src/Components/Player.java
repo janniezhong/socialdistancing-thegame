@@ -62,12 +62,12 @@ public class Player {
     public void setX(int x){
         this.x = x;
         //to check if player hits left
-        if (x < 100 + charWidth / 2) {
-            x = 100 + charWidth / 2;
+        if (this.x < 100 + charWidth / 2) {
+            this.x = 100 + charWidth / 2;
         }
         //to check if player hits right
-        else if (x > 700 - charWidth / 2 ) {
-            x = 700 - charWidth / 2;
+        else if (this.x > 700 - charWidth / 2 ) {
+            this.x = 700 - charWidth / 2;
         }
     }
 
@@ -131,6 +131,9 @@ public class Player {
     public boolean getHasDied() {
         boolean b = hasDied;
         return b;
+    }
+    public double getHealth() {
+        return maskNumber;
     }
 
     public int getIndexOfCurrObj() {

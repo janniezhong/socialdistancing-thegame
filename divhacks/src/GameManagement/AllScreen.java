@@ -71,6 +71,7 @@ public class AllScreen extends JPanel{
 		}
 		
 		if (name.equals("Game")) {
+			t = new TimeTracker();
 			resultPanel.reset();
 			gameInProgress = true;
 		}

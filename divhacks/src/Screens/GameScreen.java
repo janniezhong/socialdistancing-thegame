@@ -50,6 +50,10 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 
 	private ObstacleGenerator obstacleGen;
 	private int obstacleSpeed;
+
+	private Image redHeart;
+	private Image blackHeart;
+	private Image redblackHeart;
 	
 
 	public GameScreen(AllScreen as) {
@@ -75,7 +79,11 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		hasHitObject = false;
 		hasDied = false;
 		
-		charImg = (new ImageIcon("divhacks/assets/obstacles/nomask/blue_nomask.png").getImage());
+		charImg = (new ImageIcon("divhacks/assets/obstacles/nomask/orange_nomask.png").getImage());
+
+		redHeart = (new ImageIcon("divhacks/assets/health/red_heart.png").getImage());
+		blackHeart = (new ImageIcon("divhacks/assets/obstacles/black_heart.png").getImage());
+		redblackHeart = (new ImageIcon("divhacks/assets/obstacles/red_black_heart.png").getImage());
 
 		obstacleGen = new ObstacleGenerator();
 		obstacleSpeed = 1;
@@ -154,8 +162,47 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 			Obstacle obstacle = obstacles.get(i);
 			obstacle.draw(g, 100, 100, as.panel);
 		}
-		//System.out.println("help?");
-		//obstacleGen.updateObstacles();
+
+
+		//System.out.println(player.getMaskNum());
+
+		//double maskNum = player.getMaskNum();
+		if (player.getMaskNum() > 2.75){ // 3
+			g.drawImage(redHeart, 725, 25, 50, 50, this);
+			g.drawImage(redHeart, 725, 75, 50, 50, this);
+			g.drawImage(redHeart, 725, 125, 50, 50, this);
+			
+		} else if (player.getMaskNum() < 2.75 && player.getMaskNum() > 2.25) { // 2.5
+			g.drawImage(redHeart, 725, 25, 50, 50, this);
+			g.drawImage(redHeart, 725, 75, 50, 50, this);
+			g.drawImage(redblackHeart, 725, 125, 50, 50, this);
+			
+		} else if (player.getMaskNum() < 2.25 && player.getMaskNum() > 1.75) { // 2.0
+			g.drawImage(redHeart, 725, 25, 50, 50, this);
+			g.drawImage(redHeart, 725, 75, 50, 50, this);
+			g.drawImage(blackHeart, 725, 125, 50, 50, this);
+
+		} else if (player.getMaskNum() < 1.75 && player.getMaskNum() > 1.25) { // 1.5
+			g.drawImage(redHeart, 725, 25, 50, 50, this);
+			g.drawImage(redblackHeart, 725, 75, 50, 50, this);
+			g.drawImage(blackHeart, 725, 125, 50, 50, this);
+
+		} else if (player.getMaskNum() < 1.25 && player.getMaskNum() > 0.75) { // 1.0
+			g.drawImage(redHeart, 725, 25, 50, 50, this);
+			g.drawImage(blackHeart, 725, 75, 50, 50, this);
+			g.drawImage(blackHeart, 725, 125, 50, 50, this);
+
+		} else if (player.getMaskNum() < 0.75 && player.getMaskNum() > 0.25) { // 0.5
+			g.drawImage(redblackHeart, 725, 25, 50, 50, this);
+			g.drawImage(blackHeart, 725, 75, 50, 50, this);
+			g.drawImage(blackHeart, 725, 125, 50, 50, this);
+
+		} else { //0
+			g.drawImage(blackHeart, 725, 25, 50, 50, this);
+			g.drawImage(blackHeart, 725, 75, 50, 50, this);
+			g.drawImage(blackHeart, 725, 125, 50, 50, this);
+
+		}
 
 
 
