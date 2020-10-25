@@ -61,7 +61,7 @@ public class Player {
 		
 		for (int i = 0; i < obstacles.size(); i++) {
 
-			Polygon obstacle = obstacles.get(i).getPolygon();
+//			Polygon obstacle = obstacles.get(i).getPolygon();
 
 			// obstacle.addPoint(obstacles.get(i).getX1(),
 			// obstacles.get(i).getY1());
@@ -70,13 +70,13 @@ public class Player {
 			// obstacle.addPoint(obstacles.get(i).getX3(),
 			// obstacles.get(i).getY3());
 
-			if (obstacle.intersects(x, y, charWidth, charHeight)) {
-				maskNumber --;
-				if (maskNumber == 0){
-					hasDied = true;
-					break;
-				}
-			}
+//			if (obstacle.intersects(x, y, charWidth, charHeight)) {
+//				maskNumber --;
+//				if (maskNumber == 0){
+//					hasDied = true;
+//					break;
+//				}
+//			}
 		}
 	}
 
