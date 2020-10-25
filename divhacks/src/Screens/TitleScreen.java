@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import GameManagement.*;
+import Components.*;
 
 import javax.swing.*;
 
@@ -24,6 +25,7 @@ public class TitleScreen extends Screen implements ActionListener {
 
 		this.t = t; 
 
+
 	}
 
 	public void paintComponent(Graphics g) {
@@ -34,6 +36,8 @@ public class TitleScreen extends Screen implements ActionListener {
 		g.drawImage(runner1, 530, 100, 289, 398, this);
 		g.drawImage(runner2, 290, 110, 273, 380, this);
 		g.drawImage(runner3, 25, 110, 285, 375, this);
+
+		
 
 		//if (xPos > 1000) {
 			//xPos = -200;
@@ -59,7 +63,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		int yClick = e.getY();
 
 		if(xClick >= 350 && xClick <= 450 && yClick >= 430 && yClick <= 480) {
-			as.changeScreen("GameManagement.Game"); // change later
+			as.changeScreen("Game"); // change later
 			t.startTimeTracker();
 		}
 	}
