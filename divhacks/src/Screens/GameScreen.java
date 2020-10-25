@@ -32,28 +32,15 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	private int charSize;
 	private TimeTracker timeTracker;
 
-	private boolean helperObj;
-	private int xClick, yClick;
 	private int objWidth, objHeight;
-	private int slingX, slingY, dragX, dragY;
-	private static boolean slingPressed, slingReleased, slingInitTimeSet; // slingReleased
-																			// =
-																			// sling
-																			// clicked,
-																			// then
-																			// released
 
-
-	private int level;
-
-	private boolean hasHitTarget, hasDied;
+	private boolean hasHitObject, hasDied;
 
 	private int t;
 
 	private int x, y;
 
 	private AllScreen as;
-	// still need to call as.changeScreen("Results") somewhere
 
 	public GameScreen(AllScreen as) {
 
@@ -62,28 +49,19 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		clock.start();
 
 		this.as = as;
-		helperObj = false;
-		objWidth = 60;
-		objHeight = 5;
+		objWidth = 100;
+		objHeight = 100;
 
-		slingPressed = false;
-		slingX = 65;
-		slingY = 370;
-		dragX = slingX;
-		dragY = slingY;
-		charSize = 50;
+		charSize = 100;
 
-		hasHitTarget = false;
+		hasHitObject = false;
 		hasDied = false;
 		
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 
-		player = new Player(40, 340, charSize, charSize + 10, charImg, as);
+		player = new Player(40, 340, charSize, charSize, charImg, as);
 		timeTracker = new TimeTracker(player);
 		timeTracker.startTimeTracker();
-
-
-		slingReleased = false;
 
 
 		Color SKYBLUE = new Color(175, 238, 238);
@@ -130,35 +108,29 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		g.setColor(PALEGREEN);
 		g.fillRect(0, 400, 150, 200);
 
-		// System.out.print("pai....xxted\n");
 
 		// platform for target
-				g.setColor(PALEGREEN);
-				g.fillRect(500, 300, 150, 300);
+		g.setColor(PALEGREEN);
+		g.fillRect(500, 300, 150, 300);
 
 
 		
 		// character
-				if (slingPressed == true) {
-					player.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
-				} else {
-					x = player.getX();
-					y = player.getY();
-					player.draw(g, x, y, charSize, charSize + 10);
 
-			// System.out.print("draw x " + x + " y " + y + "\n");
+		x = player.getX();
+		y = player.getY();
+		player.draw(g, x, y, charSize, charSize + 10);
 
-		}
+		// System.out.print("draw x " + x + " y " + y + "\n");
+
+		
 		// slingshot
 		// g.drawImage(slingImg, 60, 300, 70, 100, this);
 		Color NEWYELLOW = new Color(241, 221, 56);
 		g.setColor(NEWYELLOW);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(5));
-		if (slingPressed == true) {
-			g2.drawLine(95, 340, dragX, dragY);
-		} else
-			g2.drawLine(95, 340, slingX, slingY);
+
 		// slingshot body
 		Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
@@ -230,6 +202,12 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 * 
 	 */
 
+	 public void reset(){
+		 
+	 }
+
+	 //move character right and left with keyboard 
+
 	double horiz=0, velx=0;
 	
 	Timer time = new Timer(5,this);
@@ -270,50 +248,26 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 			right();
 		}
 	}
+
 	public void keyTyped(KeyEvent e){}
 	public void keyReleased(KeyEvent e){}
 
-
-	public void reset() {
-
-		helperObj = false;
-
-		slingPressed = false;
-		slingX = 65;
-		slingY = 370;
-		dragX = slingX;
-		dragY = slingY;
-		charSize = 50;
-
-		// charImg = (new ImageIcon("shelbyface.png").getImage());
-		// slingshot = new Slingshot();
-		// character = new Components.Character(40, 340, charSize, charSize + 10, charImg,
-		// slingshot);
-		timeTracker = new TimeTracker(player);
-
-		slingReleased = false;
-
-		Color SKYBLUE = new Color(175, 238, 238);
-		setBackground(SKYBLUE);
-
-//		helpers = new ArrayList<>();
-	}
 	
 	public Player getPlayer(){
 		
 		return player;
 	}
 	
-	public boolean getHasHitTarget() {
-		return hasHitTarget;
+	public boolean getHasHitObject() {
+		return hasHitObject;
 	}
 	
 	public boolean getHasDied() {
-		return hasHitTarget;
+		return hasDied;
 	}
 	
-	public void setHasHitTarget(boolean b) {
-		hasHitTarget = b;
+	public void setHasHitObject(boolean b) {
+		hasHitObject = b;
 	}
 	
 	public void setHasDied(boolean b) {
