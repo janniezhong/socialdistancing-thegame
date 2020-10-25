@@ -59,7 +59,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 
-		player = new Player(40, 340, charSize, charSize, charImg, as);
+		player = new Player(700, charSize, charSize, charImg, as);
 		timeTracker = new TimeTracker(player);
 		timeTracker.startTimeTracker();
 
@@ -119,7 +119,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 		x = player.getX();
 		y = player.getY();
-		player.draw(g, x, y, charSize, charSize + 10);
+		player.draw(g, x, y, charSize, charSize);
 
 		// System.out.print("draw x " + x + " y " + y + "\n");
 
@@ -203,7 +203,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 */
 
 	 public void reset(){
-		 
+
 	 }
 
 	 //move character right and left with keyboard 
