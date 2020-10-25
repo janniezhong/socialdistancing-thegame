@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import GameManagement.*;
+import Components.*;
 
 import javax.swing.*;
 
@@ -23,6 +24,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		runner3 = (new ImageIcon("divhacks/assets/Runner3.png").getImage());
 
 		this.t = t; 
+
 
 	}
 

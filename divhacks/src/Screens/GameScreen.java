@@ -11,13 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 import javax.swing.*;
 import java.awt.geom.*;
 
-import Components.Player;
+import Components.*;
 import GameManagement.*;
 
 
@@ -43,6 +43,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	private AllScreen as;
 	//private Second s;
 
+	private ObstacleGenerator obstacleGen;
+
 	public GameScreen(AllScreen as) {
 
 		t = 0;
@@ -62,6 +64,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		hasDied = false;
 		
 		charImg = (new ImageIcon("shelbyface.png").getImage());
+
+		obstacleGen = new ObstacleGenerator();
 
 		player = new Player(700, charSize, charSize, charImg, as);
 		timeTracker = new TimeTracker();
@@ -106,18 +110,6 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 		// System.out.print("draw x " + x + " y " + y + "\n");
 
-		
-		// slingshot
-		// g.drawImage(slingImg, 60, 300, 70, 100, this);
-		Color NEWYELLOW = new Color(241, 221, 56);
-		g.setColor(NEWYELLOW);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(5));
-
-		// slingshot body
-		//Color BROWN = new Color(185, 155, 75);
-		//g.setColor(BROWN);
-		//g.fillRect(90, 330, 10, 70);
 
 		
 		// Road sides
@@ -140,12 +132,15 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 			g.fillRect(700,(i+1)*padding,100,9);
 		}
 
-//		// Obstacles
-//
-//		for (int i = 0; i < obstacles.size(); i++) {
-//			Components.Obstacle obstacle = obstacles.get(i);
-//			obstacle.drawObstacle(g);
-//		}
+		// Obstacles
+
+
+		LinkedList<Obstacle> obstacles = obstacleGen.getObstacles();
+
+		for (int i = 0; i < obstacles.size(); i++) {
+			Obstacle obstacle = obstacles.get(i);
+			obstacle.draw(g, 100, 100, as.panel);
+		}
 
 
 
@@ -194,7 +189,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 */
 
 	public void died(){
-		if(hasDied){
+		if(/*hasDied*/false){
 			as.changeScreen("Results");
 			timeTracker.stopTimeTracker();
 		}

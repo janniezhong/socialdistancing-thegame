@@ -26,13 +26,13 @@ public class AllScreen extends JPanel{
 		cards = new CardLayout();
 		
 		t = new TimeTracker();
-		panel = new GameScreen(this, t);
+		panel = new GameScreen(this);
 		titlePanel = new TitleScreen(this, t);
 		resultPanel = new ResultScreen(this);
 		
 		this.setLayout(cards);
 	    this.add(titlePanel, "Title");
-	    this.add(panel, "GameManagement.Game");
+	    this.add(panel, "Game");
 	    this.add(resultPanel, "Results");
 	    
 	     cards.show(this, "Title");
@@ -64,7 +64,7 @@ public class AllScreen extends JPanel{
 			panel.reset();
 		}
 		
-		if (name.equals("GameManagement.Game")) {
+		if (name.equals("Game")) {
 			resultPanel.reset();
 		}
 

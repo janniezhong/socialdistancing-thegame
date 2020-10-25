@@ -134,7 +134,7 @@ public class Player {
     }
 
     public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {
-        g.drawImage(charImg, x, y, sizeX, sizeY, as.panel);
+        g.drawImage(charImg, x-sizeX/2, y-sizeY/2, sizeX, sizeY, as.panel);
 
     }
 
