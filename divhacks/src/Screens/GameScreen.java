@@ -155,7 +155,6 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 
 		// Obstacles
 
-
 		LinkedList<Obstacle> obstacles = obstacleGen.getObstacles();
 
 		for (int i = 0; i < obstacles.size(); i++) {
@@ -289,6 +288,10 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		repaint();
 		died();
 		if (obstacleGen != null && AllScreen.gameInProgress){
+			long timeElapsed = timeTracker.getElapsed();
+
+			obstacleSpeed = (int)timeElapsed/3;
+
 			obstacleGen.updateObstacles(obstacleSpeed);
 		}
 		if (player!= null && AllScreen.gameInProgress) {
@@ -303,16 +306,16 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 
 	@Override
 	public void keyPressed(KeyEvent e){
-		System.out.println("is this happening?");
-		int code = e.getKeyCode();
-		if(code == KeyEvent.VK_LEFT){
-			//velx=-3;
-			player.move(-3);
-		}
-		if(code == KeyEvent.VK_RIGHT){
-			//velx=3;
-			player.move(+3);
-		}
+		// System.out.println("is this happening?");
+		// int code = e.getKeyCode();
+		// if(code == KeyEvent.VK_LEFT){
+		// 	//velx=-3;
+		// 	player.move(-3);
+		// }
+		// if(code == KeyEvent.VK_RIGHT){
+		// 	//velx=3;
+		// 	player.move(+3);
+		// }
 	}
 	@Override
 	public void keyTyped(KeyEvent e){}
