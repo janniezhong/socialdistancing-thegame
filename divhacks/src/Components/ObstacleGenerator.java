@@ -10,6 +10,10 @@ public class ObstacleGenerator {
 
     }
 
+//    public updateObstacles(){
+//
+//    }
+
 
     public LinkedList<Obstacle> getObstacles(){
         return obstacles;
