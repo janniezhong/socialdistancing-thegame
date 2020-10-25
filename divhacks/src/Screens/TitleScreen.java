@@ -4,12 +4,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import GameManagement.*;
 import Components.*;
 
 import javax.swing.*;
 
-public class TitleScreen extends Screen implements ActionListener {
+public class TitleScreen extends Screen implements ActionListener, KeyListener {
 
 	private AllScreen as;
 	private Image runner1;
@@ -66,7 +68,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		int yClick = e.getY();
 
 		if(xClick >= 350 && xClick <= 450 && yClick >= 655 && yClick <= 705) {
-			as.changeScreen("Results"); // change later
+			as.changeScreen("Game"); // change later
 			t.startTimeTracker();
 		}
 	}

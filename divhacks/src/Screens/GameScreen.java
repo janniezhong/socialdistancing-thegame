@@ -11,11 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.LinkedList;
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+//import java.awt.*;
 
 import javax.swing.*;
-import java.awt.geom.*;
+import java.util.LinkedList;
+
 
 import Components.*;
 import GameManagement.*;
@@ -25,7 +27,7 @@ import GameManagement.*;
 //graphics of the game screen, background 
 //has character, slingshot, target, + the menu w/ the helper blocks
 
-public class GameScreen extends JPanel implements KeyListener, ActionListener {
+public class GameScreen extends JPanel implements ActionListener, KeyListener, MouseListener {
 
 	protected Player player;
 	private Image charImg;
@@ -44,6 +46,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	//private Second s;
 
 	private ObstacleGenerator obstacleGen;
+	private int obstacleSpeed;
 
 	public GameScreen(AllScreen as) {
 
@@ -52,8 +55,11 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		clock.start();
 
 		this.as = as;
-		addKeyListener(this);
-		setFocusable(true);
+		this.addKeyListener(this);
+		//this.addActionListener(this);
+		this.setFocusable(true);
+		this.requestFocus(); 
+
 
 		//second s = new second();
 		//as.add(s);
@@ -68,6 +74,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		charImg = (new ImageIcon("divhacks/assets/obstacles/nomask/blue_nomask.png").getImage());
 
 		obstacleGen = new ObstacleGenerator();
+		obstacleSpeed = 1;
 
 		player = new Player(400, charSize, charSize, charImg, as);
 		timeTracker = new TimeTracker();
@@ -192,6 +199,9 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 * 
 	 */
 
+	 
+	
+
 	public void died(){
 		if(hasDied){
 			as.changeScreen("Results");
@@ -207,6 +217,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		y = 0;
 
 	}
+
 
 
 	//move character right and left with keyboard 
@@ -226,14 +237,19 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	public void actionPerformed(ActionEvent e){
 		t++;
 		repaint();
-		player.move(velx);
-		obstacleGen.updateObstacles();
+		
+		if (obstacleGen != null){
+			obstacleGen.updateObstacles(obstacleSpeed);
+		}
+		if (player!= null) {
+			player.move(velx);
+		}
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e){
-		//System.out.println("is this happening?");
+		System.out.println("is this happening?");
 		int code = e.getKeyCode();
 		if(code == KeyEvent.VK_LEFT){
 			//velx=-3;
@@ -249,6 +265,37 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 
 	@Override
 	public void keyReleased(KeyEvent e){}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("rawr");
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	public Player getPlayer(){
