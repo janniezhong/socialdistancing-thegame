@@ -64,7 +64,7 @@ public class AllScreen extends JPanel{
 			panel.reset();
 		}
 		
-		if (name.equals("Level")) {
+		if (name.equals("GameManagement.Game")) {
 			resultPanel.reset();
 		}
 		
