@@ -17,7 +17,7 @@ public class Game extends JFrame{
 		
 		w.setTitle("Social Distancing - The GameManagement.Game");
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		w.setBounds(100, 100, 800, 600);
+		w.setBounds(100, 100, 800, 800);
 		w.add(as);
 		w.getContentPane().repaint();
 		
