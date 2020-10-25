@@ -23,25 +23,34 @@ public class TitleScreen extends Screen implements ActionListener {
 		runner3 = (new ImageIcon("divhacks/Runner3.png").getImage());
 
 		this.t = t; 
+
 	}
 
 	public void paintComponent(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
 
+
 		g.drawImage(runner1, 530, 100, 289, 398, this);
 		g.drawImage(runner2, 290, 110, 273, 380, this);
 		g.drawImage(runner3, 25, 110, 285, 375, this);
+
+		//if (xPos > 1000) {
+			//xPos = -200;
+		//}
 		
-		g.setColor(new Color(255,255,255));
-		Font newFont = new Font("Arial", Font.BOLD, 20);
-		g.setFont(newFont);
-		g.drawString("The Social Distancing Game", 250, 50);
-		
-		g.setColor(new Color(192,192,192));
-		g2.fillRoundRect(350, 430, 100, 50, 30, 30);
-		g.setColor(new Color(255,255,255));
-		g.drawString("Start!", 370, 460);
+		//g.drawImage(nyanCat, xPos, yPos, 200, 150, this);
+
+//		g.setColor(new Color(255,255,255));
+//		Font newFont = new Font("Arial", Font.BOLD, 20);
+//		g.setFont(newFont);
+//		g.drawString("The Social Distancing Game", 250, 50);
+//
+//		g.setColor(new Color(192,192,192));
+//		g2.fillRoundRect(350, 430, 100, 50, 30, 30);
+//		g.setColor(new Color(255,255,255));
+//		g.drawString("Start!", 370, 460);
+
 	}
 
 	@Override
