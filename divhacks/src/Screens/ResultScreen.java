@@ -72,15 +72,16 @@ public class ResultScreen extends Screen {
 		g.setColor(Color.WHITE);
 		g.drawString("Your score is " + GameScreen.score, 250, 550);
 
+		// button
 		g.setColor(new Color(192,192,192));
 		g2.fillRoundRect(325, 600, 150, 50, 30, 30);
 		g2.fillRoundRect(350, 660, 100, 50, 30, 30);
 
-		g.setColor(new Color(192,192,192));
+		g.setColor(new Color(7, 1, 43));
 		Font font2 = new Font("Arial Narrow", Font.PLAIN, 25);
 		g.setFont(font2);
-		g.drawString("Play again!", 345, 632);
-		g.drawString("Home", 373, 692);
+		g.drawString("Play again!", 352, 633);
+		g.drawString("Home", 375, 694);
 	}
 
 	public void mousePressed(MouseEvent e) {
