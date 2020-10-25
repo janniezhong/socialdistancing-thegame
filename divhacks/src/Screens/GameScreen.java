@@ -208,7 +208,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	public void died(){
 		score = timeTracker.stopTimeTracker();
 		//System.out.println(score);
-		if(score>10 && AllScreen.gameInProgress){
+		if((score > 10 || (player!= null && player.getHasDied())) && AllScreen.gameInProgress){
 			as.changeScreen("Results");
 		}
 	}
@@ -225,7 +225,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	//move character right and left with keyboard 
 
 	//double horiz=0, velx=0;
-	int velx=0;
+	
 	//Timer time = new Timer(5,this);
 
 	// public void paintComponent(Graphics g){
@@ -240,11 +240,13 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		t++;
 		repaint();
 		died();
-		if (obstacleGen != null){
+		if (obstacleGen != null && AllScreen.gameInProgress){
 			obstacleGen.updateObstacles(obstacleSpeed);
 		}
-		if (player!= null) {
-			player.move(velx);
+		if (player!= null && AllScreen.gameInProgress) {
+			//System.out.println("checking for obstacles");
+			LinkedList<Obstacle> obstacles = obstacleGen.getObstacles();
+			player.checkHasCollided(obstacles, 800, 800);
 		}
 
 	}
@@ -307,7 +309,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		System.out.println("x: " + e.getX() + " y: " + e.getY());
+		//System.out.println("x: " + e.getX() + " y: " + e.getY());
 		player.setX(e.getX());
 
 	}

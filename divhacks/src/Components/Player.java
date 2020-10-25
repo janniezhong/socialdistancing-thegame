@@ -90,6 +90,7 @@ public class Player {
             int obRight = obX - charWidth / 2;
             boolean hasMask = ob.hasMask();
 
+
             if (obRight >= playerLeft && obLeft <= playerLeft && obBottom >= playerTop && obTop <= playerTop){
                 decrementMasks(hasMask);
             }
@@ -106,6 +107,7 @@ public class Player {
     }
 
     public void decrementMasks(boolean hasMask){
+        System.out.println("is anything getting hit?");
         if (hasMask){
             maskNumber -= 1;
         }
