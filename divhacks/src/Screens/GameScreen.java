@@ -118,8 +118,8 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		// character
 
 		x = player.getX();
-		y = player.getY();
-		player.draw(g, x, y, charSize, charSize);
+		//y = player.getY();
+		player.draw(g, x, 400, charSize, charSize);
 
 		// System.out.print("draw x " + x + " y " + y + "\n");
 
@@ -162,9 +162,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 //
 //		}
 		
-		
 		timeTracker.stopTimeTracker();
-
 	}
 
 
@@ -202,9 +200,14 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 	 * 
 	 */
 
-	 public void reset(){
+	public void reset() {
+		hasDied = false;
+		hasHitObstacle = false;
 
-	 }
+		x = 400;
+		y = 0;
+
+	}
 
 	 //move character right and left with keyboard 
 

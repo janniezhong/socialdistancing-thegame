@@ -43,7 +43,7 @@ public class ResultScreen extends Screen {
 		// score = 4;
 		// else // ((time>0 && time<= 30))
 		// score = 5;
-//		System.out.println(as.panel.getHasHitTarget()+ "");
+		System.out.println(as.panel.getHasHitObject()+ "");
 
 	}
 
@@ -65,8 +65,8 @@ public class ResultScreen extends Screen {
 //			score = 0;
 //		}
 
-//		as.panel.setHasHitTarget(false);
-//		as.panel.setHasDied(false);
+		as.panel.setHasHitObject(false);
+		as.panel.setHasDied(false);
 		
 		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 800, 600);
