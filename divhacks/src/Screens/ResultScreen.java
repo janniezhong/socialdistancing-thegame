@@ -22,9 +22,9 @@ public class ResultScreen extends Screen {
 		this.as = as;
 
 		player = as.panel.getPlayer();
-		timeTracker = new TimeTracker(player);
+		timeTracker = new TimeTracker();
 
-		time = timeTracker.getTime();
+		//time = timeTracker.getTime();
 		// isDead = character.getHasDied();
 
 		// if ((character.getHasHitTarget())) {
@@ -117,6 +117,6 @@ public class ResultScreen extends Screen {
 
 		this.as = as;
 
-		time = TimeTracker.getTime();
+		//time = TimeTracker.getTime();
 	}
 }

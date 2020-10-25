@@ -16,6 +16,7 @@ public class AllScreen extends JPanel{
 	private ResultScreen resultPanel;
 	//private LevelScreen levelPanel;
 	public GameScreen panel;
+	public TimeTracker t;
 	public static int SCREEN;
 	public static int LEVEL;
 
@@ -24,11 +25,10 @@ public class AllScreen extends JPanel{
 		
 		cards = new CardLayout();
 		
+		t = new TimeTracker();
 		panel = new GameScreen(this);
-		titlePanel = new TitleScreen(this);
+		titlePanel = new TitleScreen(this, t);
 		resultPanel = new ResultScreen(this);
-
-
 		
 		this.setLayout(cards);
 	    this.add(titlePanel, "Title");
