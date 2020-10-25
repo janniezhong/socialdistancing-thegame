@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 //import java.awt.*;
 
 import javax.swing.*;
@@ -27,7 +29,7 @@ import GameManagement.*;
 //graphics of the game screen, background 
 //has character, slingshot, target, + the menu w/ the helper blocks
 
-public class GameScreen extends JPanel implements ActionListener, KeyListener, MouseListener {
+public class GameScreen extends JPanel implements ActionListener, KeyListener, MouseListener, MouseMotionListener {
 
 	protected Player player;
 	private Image charImg;
@@ -205,8 +207,8 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 
 	public void died(){
 		score = timeTracker.stopTimeTracker();
-		System.out.println(score);
-		if(score>20 && AllScreen.gameInProgress){
+		//System.out.println(score);
+		if(score>10 && AllScreen.gameInProgress){
 			as.changeScreen("Results");
 		}
 	}
@@ -296,6 +298,20 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		System.out.println("x: " + e.getX() + " y: " + e.getY());
+		player.setX(e.getX());
+
+	}
+
 
 	
 	public Player getPlayer(){

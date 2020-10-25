@@ -43,7 +43,7 @@ public class AllScreen extends JPanel{
 		panel.addKeyListener(panel);
 		panel.addMouseListener(panel);
 		//panel.addActionListener(panel);
-		//panel.addMouseMotionListener(panel);
+		panel.addMouseMotionListener(panel);
 		titlePanel.addMouseListener(titlePanel);
 		resultPanel.addMouseListener(resultPanel);
 

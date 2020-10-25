@@ -59,6 +59,17 @@ public class Player {
             x = 700 - charWidth / 2;
         }
     }
+    public void setX(int x){
+        this.x = x;
+        //to check if player hits left
+        if (x < 100 + charWidth / 2) {
+            x = 100 + charWidth / 2;
+        }
+        //to check if player hits right
+        else if (x > 700 - charWidth / 2 ) {
+            x = 700 - charWidth / 2;
+        }
+    }
 
     public void checkHasCollided(LinkedList<Components.Obstacle> obstacles, int screenWidth, int screenHeight) {
 
