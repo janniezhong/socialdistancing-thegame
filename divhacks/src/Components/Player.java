@@ -60,7 +60,6 @@ public class Player {
         }
     }
 
-    /*
     public void checkHasCollided(LinkedList<Components.Obstacle> obstacles, int screenWidth, int screenHeight) {
 
         int playerTop = y - charHeight / 2;
@@ -81,7 +80,7 @@ public class Player {
             boolean hasMask = ob.hasMask();
 
             if (obRight >= playerLeft && obLeft <= playerLeft && obBottom >= playerTop && obTop <= playerTop){
-                decrementMasks(hasMask;
+                decrementMasks(hasMask);
             }
             else if (obLeft <= playerRight && obRight >= playerRight && obBottom >= playerTop && obTop <= playerTop){
                 decrementMasks(hasMask);
@@ -94,7 +93,6 @@ public class Player {
             }
         }
     }
-    */
 
     public void decrementMasks(boolean hasMask){
         if (hasMask){
