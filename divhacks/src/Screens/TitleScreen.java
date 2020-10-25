@@ -32,28 +32,31 @@ public class TitleScreen extends Screen implements ActionListener {
 
 		Graphics2D g2 = (Graphics2D) g;
 
+		// background
+		g.setColor(new Color(7, 1, 43));
+		g2.fillRect(0,0,800,800);
 
-		g.drawImage(runner1, 530, 100, 289, 398, this);
-		g.drawImage(runner2, 290, 110, 273, 380, this);
-		g.drawImage(runner3, 25, 110, 285, 375, this);
+		// among us characters
+		g.drawImage(runner1, 530, 180, 289, 398, this);
+		g.drawImage(runner2, 280, 245, 273, 380, this);
+		g.drawImage(runner3, 20, 180, 285, 375, this);
 
-		
-
-		//if (xPos > 1000) {
-			//xPos = -200;
-		//}
-		
-		//g.drawImage(nyanCat, xPos, yPos, 200, 150, this);
-
-		g.setColor(new Color(255,255,255));
-		Font newFont = new Font("Arial", Font.BOLD, 20);
+		// title
+		g.setColor(Color.WHITE);
+		Font newFont = new Font("Arial", Font.BOLD, 45);
 		g.setFont(newFont);
-		g.drawString("The Social Distancing Game", 250, 50);
+		g.drawString("Between Us", 275, 90);
 
+		Font font2 = new Font("Arial", Font.ITALIC, 25);
+		g.setFont(font2);
+		g.setColor(Color.GRAY);
+		g.drawString("a social distancing game", 265, 130);
+
+		// button
 		g.setColor(new Color(192,192,192));
-		g2.fillRoundRect(350, 430, 100, 50, 30, 30);
-		g.setColor(new Color(255,255,255));
-		g.drawString("Start!", 370, 460);
+		g2.fillRoundRect(350, 655, 100, 50, 30, 30);
+		g.setColor(new Color(7, 1, 43));
+		g.drawString("Start!", 370, 688);
 
 	}
 
@@ -62,8 +65,8 @@ public class TitleScreen extends Screen implements ActionListener {
 		int xClick = e.getX();
 		int yClick = e.getY();
 
-		if(xClick >= 350 && xClick <= 450 && yClick >= 430 && yClick <= 480) {
-			as.changeScreen("Game"); // change later
+		if(xClick >= 350 && xClick <= 450 && yClick >= 655 && yClick <= 705) {
+			as.changeScreen("Results"); // change later
 			t.startTimeTracker();
 		}
 	}

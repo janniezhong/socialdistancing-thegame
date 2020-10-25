@@ -67,6 +67,10 @@ public class AllScreen extends JPanel{
 		if (name.equals("Game")) {
 			resultPanel.reset();
 		}
+
+		if (name.equals("Title")) {
+			cards.show(this, "Title");
+		}
 		
 		
 		cards.show(this, name);

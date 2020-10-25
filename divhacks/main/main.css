@@ -1,33 +1,37 @@
 body {
-    background-color: #FAD4C0;
-}
-
-    
+    background-image: url("./background_image.png")
+}  
 
 .header {
-    background-color: #64B6AC;
     margin: auto;
-    height: 10rem;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
 }
 
-.title {
-    text-align: center;
-    padding: 3rem;
-    letter-spacing: 3px;
-    font-family: 'Fredoka One';
-    color: #006d77;
-    font-size: 3rem;
+.header-image {
+    max-height: 80%;
+    max-width: 90%;
 }
 
 .instructions{
-    background-color: #FEE9E1;
+    margin-top: 10rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    background-color: #B4f4fe;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 .instruction-title{
-    color: #B09E99;
+    color: #000000;
     font-family: 'Fredoka One';
+    letter-spacing: 2.5px;
+    padding-top: 3rem;
 }
 
 .instruction-text{
-    color: #B09E99;
+    font-family: 'Arial';
+    padding-top: 0.75rem;
+    padding-bottom: 3rem;
 }
