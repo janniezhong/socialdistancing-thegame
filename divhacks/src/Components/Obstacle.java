@@ -13,7 +13,7 @@ public class Obstacle {
     private boolean hasMask;
     private int size = 100;
 
-    private String[] imagePaths = {"/assets/obstacles/black_nomask.png"};
+    private String[] nomaskPaths = {"/divhacks/assets/obstacles/black_nomask.png"};
 
 
 
@@ -24,9 +24,9 @@ public class Obstacle {
 
         this.hasMask = hasMask;
         if(hasMask){
-            img = (new ImageIcon("shelbyface.png").getImage());
+            img = (new ImageIcon(chooseNoMaskImg()).getImage());
         } else {
-            img = (new ImageIcon("shelbyface.png").getImage());
+            img = (new ImageIcon(chooseNoMaskImg()).getImage());
         }
 
     }
@@ -48,9 +48,9 @@ public class Obstacle {
         return hasMask;
     }
 
-    public String chooseImg(){
-        int i = (int)(Math.random()*imagePaths.length);
-        return imagePaths[i];
+    public String chooseNoMaskImg(){
+        int i = (int)(Math.random()*nomaskPaths.length);
+        return nomaskPaths[i];
     }
 
 
