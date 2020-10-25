@@ -82,8 +82,8 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		charImg = (new ImageIcon("divhacks/assets/obstacles/nomask/orange_nomask.png").getImage());
 
 		redHeart = (new ImageIcon("divhacks/assets/health/red_heart.png").getImage());
-		blackHeart = (new ImageIcon("divhacks/assets/obstacles/black_heart.png").getImage());
-		redblackHeart = (new ImageIcon("divhacks/assets/obstacles/red_black_heart.png").getImage());
+		blackHeart = (new ImageIcon("divhacks/assets/health/black_heart.png").getImage());
+		redblackHeart = (new ImageIcon("divhacks/assets/health/red_black_heart.png").getImage());
 
 		obstacleGen = new ObstacleGenerator();
 		obstacleSpeed = 1;
@@ -255,7 +255,8 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	public void died(){
 		score = timeTracker.stopTimeTracker();
 		//System.out.println(score);
-		if((score > 10 || (player!= null && player.getHasDied())) && AllScreen.gameInProgress){
+		if(player!= null && player.getHasDied() && AllScreen.gameInProgress){
+			player.reset();
 			as.changeScreen("Results");
 		}
 	}
@@ -293,6 +294,8 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		if (player!= null && AllScreen.gameInProgress) {
 			//System.out.println("checking for obstacles");
 			LinkedList<Obstacle> obstacles = obstacleGen.getObstacles();
+
+			//System.out.println("x: " + player.getX());
 			player.checkHasCollided(obstacles, 800, 800);
 		}
 
@@ -358,6 +361,7 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 	public void mouseDragged(MouseEvent e) {
 		//System.out.println("x: " + e.getX() + " y: " + e.getY());
 		player.setX(e.getX());
+		//System.out.println("x: " + player.getX());
 
 	}
 

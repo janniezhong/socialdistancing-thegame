@@ -75,8 +75,10 @@ public class Player {
 
         int playerTop = y - charHeight / 2;
         int playerBottom = y + charHeight / 2;
-        int playerLeft = y - charWidth / 2;
-        int playerRight = y + charWidth / 2;
+        int playerLeft = x - charWidth / 2;
+        int playerRight = x + charWidth / 2;
+
+        //System.out.println("playerLeft: " + playerLeft);
     
         for (int i = 0; i < obstacles.size(); i++) {
 
