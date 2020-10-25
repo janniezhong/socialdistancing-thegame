@@ -109,7 +109,7 @@ public class Player {
     }
 
     public void decrementMasks(boolean hasMask){
-        System.out.println("is anything getting hit?");
+        //System.out.println("is anything getting hit?");
         if (hasMask){
             maskNumber -= 1;
         }
@@ -126,13 +126,11 @@ public class Player {
 
 
     public boolean getHasHitObstacle() {
-        boolean b = hasHitObstacle;
-        return b;
+        return hasHitObstacle;
     }
 
     public boolean getHasDied() {
-        boolean b = hasDied;
-        return b;
+        return hasDied;
     }
     public double getHealth() {
         return maskNumber;
@@ -143,9 +141,9 @@ public class Player {
     }
 
     public void reset() {
+        maskNumber = 3.0;
         hasDied = false;
         hasHitObstacle = false;
-        maskNumber = 3.0;
         x = 400;
         y = 700;
 

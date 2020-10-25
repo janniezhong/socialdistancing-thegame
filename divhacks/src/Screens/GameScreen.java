@@ -255,6 +255,11 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 		score = timeTracker.stopTimeTracker();
 		//System.out.println(score);
 		if(player!= null && player.getHasDied() && AllScreen.gameInProgress){
+			// System.out.println("Player dead:" + player.getHasDied());
+			// System.out.println("Player health:" + player.getHealth());
+			// System.out.println("Player score:" + score);
+
+
 			player.reset();
 			as.changeScreen("Results");
 		}
@@ -291,6 +296,10 @@ public class GameScreen extends JPanel implements ActionListener, KeyListener, M
 			long timeElapsed = timeTracker.getElapsed();
 
 			obstacleSpeed = (int)timeElapsed/3;
+
+			if (obstacleSpeed > 10){
+				obstacleSpeed = 10;
+			}
 
 			obstacleGen.updateObstacles(obstacleSpeed);
 		}
