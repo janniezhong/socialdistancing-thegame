@@ -13,7 +13,7 @@ public class Obstacle {
     private boolean hasMask;
     private int size = 100;
 
-    private String[] nomaskPaths = {"/divhacks/assets/obstacles/black_nomask.png"};
+    private String[] nomaskPaths = {"/divhacks/assets/obstacles/nomask/black_nomask.png"};
 
 
 
