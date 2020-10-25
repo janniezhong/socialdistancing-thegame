@@ -2,7 +2,6 @@ package Components;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Polygon;
 import java.util.ArrayList;
 import GameManagement.*;
 
@@ -42,6 +41,10 @@ public class Player {
 		return y;
 	}
 
+	public int getMaskNum() {
+		return maskNumber;
+	}
+
 
 	public void move(int xChange) {
 		//to check if player hits left
@@ -57,28 +60,44 @@ public class Player {
 		}
 	}
 
-	public void checkHasCollided(ArrayList<Components.Obstacle> obstacles, int screenWidth, int screenHeight) {
-		
+	/*
+	public void checkHasCollided(LinkedList<Components.Obstacle> obstacles, int screenWidth, int screenHeight) {
+	
 		for (int i = 0; i < obstacles.size(); i++) {
 
-//			Polygon obstacle = obstacles.get(i).getPolygon();
+			Obstacle ob = obstacles.get(i);
+			int obX = ob.getX();
+			int obY = ob.getY();
+			
+			//could change all of these to || instead of four ifs
 
-			// obstacle.addPoint(obstacles.get(i).getX1(),
-			// obstacles.get(i).getY1());
-			// obstacle.addPoint(obstacles.get(i).getX2(),
-			// obstacles.get(i).getY2());
-			// obstacle.addPoint(obstacles.get(i).getX3(),
-			// obstacles.get(i).getY3());
-
-//			if (obstacle.intersects(x, y, charWidth, charHeight)) {
-//				maskNumber --;
-//				if (maskNumber == 0){
-//					hasDied = true;
-//					break;
-//				}
-//			}
+			//player collides with obstacle from the left
+			if (obX + charWidth >= x - charWidth && obY + charHeight >= y - charHeight) {
+				decrementMasks();
+			}
+			else if (obX + charWidth >= x - charWidth && obY - charHeight <= y + charHeight) {
+				decrementMasks();
+			}
+			//player collides with obstacle from the right
+			else if (obX - charWidth <= x + charWidth && obY + charHeight >= y - charHeight) {
+				decrementMasks();
+			}
+			else if (obX - charWidth <= x + charWidth && obY - charHeight <= y + charHeight) {
+				decrementMasks();
+			}
 		}
 	}
+	*/
+
+	public void decrementMasks(){
+		maskNumber --;
+				if (maskNumber == 0){
+					hasDied = true;
+					as.changeScreen("Results");
+				}
+
+	}
+
 
 	public boolean getHasHitObstacle() {
 		boolean b = hasHitObstacle;
@@ -97,9 +116,9 @@ public class Player {
 	public void reset() {
 		hasDied = false;
 		hasHitObstacle = false;
-
+		maskNumber = 3;
 		x = 400;
-		y = 0;
+		y = 700;
 
 	}
 
