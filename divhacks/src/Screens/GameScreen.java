@@ -60,7 +60,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 
 		player = new Player(700, charSize, charSize, charImg, as);
-		timeTracker = new TimeTracker(player);
+		timeTracker = new TimeTracker();
 		timeTracker.startTimeTracker();
 
 
@@ -77,7 +77,7 @@ public class GameScreen extends JPanel implements KeyListener, ActionListener {
 		int width = getWidth();
 		int height = getHeight();
 
-		int t = TimeTracker.getTime();
+		//int t = TimeTracker.getTime();
 		String time = "";
 
 		Font timeFont = new Font("SansSerif", Font.BOLD, 20);

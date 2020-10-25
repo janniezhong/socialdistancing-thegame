@@ -10,21 +10,19 @@ import javax.swing.*;
 
 public class TitleScreen extends Screen implements ActionListener {
 
-	//private Image titleImg;
-	
 	private AllScreen as;
-	//private int t;
-	
 	private Image runner1;
 	private Image runner2;
 	private Image runner3;
-	private int xPos, yPos;
+	private TimeTracker t;
 
-	public TitleScreen(AllScreen as) {
+	public TitleScreen(AllScreen as, TimeTracker t) {
 		this.as = as;
 		runner1 = (new ImageIcon("divhacks/Runner1.png").getImage());
 		runner2 = (new ImageIcon("divhacks/Runner2.png").getImage());
 		runner3 = (new ImageIcon("divhacks/Runner3.png").getImage());
+
+		this.t = t; 
 	}
 
 	public void paintComponent(Graphics g) {
@@ -35,11 +33,6 @@ public class TitleScreen extends Screen implements ActionListener {
 		g.drawImage(runner2, 290, 110, 273, 380, this);
 		g.drawImage(runner3, 25, 110, 285, 375, this);
 		
-		//if (xPos > 1000) {
-			//xPos = -200;
-		//}
-		
-		//g.drawImage(nyanCat, xPos, yPos, 200, 150, this);
 		g.setColor(new Color(255,255,255));
 		Font newFont = new Font("Arial", Font.BOLD, 20);
 		g.setFont(newFont);
@@ -49,7 +42,6 @@ public class TitleScreen extends Screen implements ActionListener {
 		g2.fillRoundRect(350, 430, 100, 50, 30, 30);
 		g.setColor(new Color(255,255,255));
 		g.drawString("Start!", 370, 460);
-
 	}
 
 	@Override
@@ -59,6 +51,7 @@ public class TitleScreen extends Screen implements ActionListener {
 
 		if(xClick >= 350 && xClick <= 450 && yClick >= 430 && yClick <= 480) {
 			as.changeScreen("Results"); // change later
+			t.startTimeTracker();
 		}
 	}
 

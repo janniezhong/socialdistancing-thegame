@@ -8,48 +8,51 @@ import javax.swing.Timer;
 
 public class TimeTracker implements ActionListener {
 
-	private static int time;
-	private boolean characterDead; 
-	private Timer clock;
-	private Player c1;
+	private static int elapsedTime;
+	//private boolean characterDead; 
+	//private Timer clock;
 	private static long beginTime, endTime;
 	
-	public TimeTracker(Player player) {
+	public TimeTracker() {
 		beginTime = System.currentTimeMillis();
 		endTime = System.currentTimeMillis();
-
-		time = 0;
-	    clock = new Timer(1000, this); 
-	    clock.start();
-	    c1 = player;
-	   
+		elapsedTime = 0;
+	    //clock = new Timer(1000, this); 
+	    //clock.start();
 	}
 
 	
-	public static int getTime() {
+	/*public static int getTime() {
 		int t1 = (int) ((endTime - beginTime) / 1000);
 		
 		return t1;
-	}
+	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		incrementTime();
 	}
-	public void startTimeTracker(){
-		time = 0;
-	    clock = new Timer(1000, this);
-		clock.start();
-	}
-	public void stopTimeTracker(){
 
-	    if(c1.getHasDied() == true) {
+	public void startTimeTracker(){
+		beginTime = System.currentTimeMillis();
+		endTime = 0;
+		
+		//clock = new Timer(1000, this);
+		//clock.start();
+	}
+	public static int stopTimeTracker(){
+		endTime = System.currentTimeMillis();
+		elapsedTime = (int) ((endTime - beginTime) / 1000);
+
+		return elapsedTime;
+	    /*if(c1.getHasDied() == true) {
 	    	clock.stop();
 	    	time = -1;
-	    }
+	    }*/
 	}
-	
-	public void incrementTime() {
+
+	public void incrementTime(){
 		endTime = System.currentTimeMillis();
 	}
+
 }
