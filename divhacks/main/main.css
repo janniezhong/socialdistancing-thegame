@@ -21,17 +21,20 @@ body {
     background-color: #B4f4fe;
     padding-left: 5rem;
     padding-right: 5rem;
-}
-
-.instruction-title{
-    color: #000000;
-    font-family: 'Fredoka One';
-    letter-spacing: 2.5px;
+    padding-bottom: 3rem;
     padding-top: 3rem;
 }
 
-.instruction-text{
+.subtitle{
+    color: #000000;
+    font-family: 'Arial';
+    text-emphasis: bold;
+    font-style: oblique;
+    letter-spacing: 2px;
+}
+
+.text{
     font-family: 'Arial';
     padding-top: 0.75rem;
-    padding-bottom: 3rem;
+    padding-bottom: 0.75rem;
 }
